@@ -2,12 +2,15 @@
 
 Chart Component for Qodly studio
 
-![image info](public/pie.png)
 
 ## Pie & Doughnut Chart
+![image info](public/pie.png)
+
 
 ##  Area Chart
-Soon ...
+![image info](public/pie.png)
+
+
 ##  Bar Chart
 Soon ...
 ##  Bubble Chart
