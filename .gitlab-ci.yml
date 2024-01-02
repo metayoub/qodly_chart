@@ -1,0 +1,13 @@
+image: node:lts
+
+stages:
+  - build
+
+Run Build:
+  stage: build
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - dist/**

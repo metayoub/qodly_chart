@@ -1,0 +1,93 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "colors": {
+    "editor.background": "#313131"
+  },
+  "rules": [
+    {
+      "token": "",
+      "background": "#313131"
+    },
+    {
+      "token": "method",
+      "foreground": "#1b79f3",
+      "fontStyle": "bold italic"
+    },
+    {
+      "token": "method.defaultLibrary",
+      "foreground": "#59bb00",
+      "fontStyle": "bold"
+    },
+    {
+      "token": "method.plugin",
+      "foreground": "#bfbfbf"
+    },
+    {
+      "token": "property",
+      "foreground": "#a0806b"
+    },
+    {
+      "token": "function",
+      "foreground": "#4ec36e",
+      "fontStyle": "italic"
+    },
+    {
+      "token": "parameter",
+      "foreground": "#0c70ff",
+      "fontStyle": "bold"
+    },
+    {
+      "token": "variable.interprocess",
+      "foreground": "#ff0088"
+    },
+    {
+      "token": "variable.process",
+      "foreground": "#53b0eb"
+    },
+    {
+      "token": "variable.local",
+      "foreground": "#18b3f1"
+    },
+    {
+      "token": "keyword",
+      "foreground": "#d0d0d0",
+      "fontStyle": "bold"
+    },
+    {
+      "token": "type",
+      "foreground": "#068c00",
+      "fontStyle": "bold"
+    },
+    {
+      "token": "table",
+      "foreground": "#cf5600"
+    },
+    {
+      "token": "field",
+      "foreground": "#9c6765"
+    },
+    {
+      "token": "operator",
+      "foreground": "#d0d0d0"
+    },
+    {
+      "token": "comment",
+      "foreground": "#8f8f8f"
+    },
+    {
+      "token": "constant",
+      "foreground": "#fa647f",
+      "fontStyle": "underline"
+    },
+    {
+      "token": "string",
+      "foreground": "#ffffff"
+    },
+    {
+      "token": "error",
+      "foreground": "#ff0000",
+      "fontStyle": "bold italic"
+    }
+  ]
+}
