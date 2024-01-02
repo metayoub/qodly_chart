@@ -27,12 +27,12 @@ ChartJS.register(
   Legend,
 );
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
 const Line: FC<ILineProps> = ({
   name,
   datasets = [],
   legendPosition = 'top',
+  grid = false,
+  tension = 0,
   style,
   className,
   classNames = [],
@@ -43,27 +43,45 @@ const Line: FC<ILineProps> = ({
 
   const data = useMemo(
     () => ({
-      labels,
       datasets: datasets.map((set) => ({
         fill: set.fill,
         label: set.label,
-        data: labels.map(() => Math.random() * 100),
+        data: [
+          { x: 'value 1', y: Math.random() * 10 },
+          { x: 'value 2', y: Math.random() * 10 },
+          { x: 'value 3', y: Math.random() * 10 },
+          { x: 'value 4', y: Math.random() * 10 },
+        ],
+        tension: tension,
         borderColor: set.borderColor,
         backgroundColor: set.backgroundColor,
       })),
     }),
-    [labels, datasets],
+    [datasets, tension],
   );
 
   const options = {
     responsive: true,
     plugins: {
       legend: {
+        display: (legendPosition as string) !== 'hidden',
         position: legendPosition,
       },
       title: {
         display: name !== '',
         text: name,
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          display: grid,
+        },
+      },
+      y: {
+        grid: {
+          display: grid,
+        },
       },
     },
   };

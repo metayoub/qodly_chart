@@ -1,6 +1,14 @@
 import { ESetting, TSetting } from '@ws-ui/webform-editor';
 import { BASIC_SETTINGS, DEFAULT_SETTINGS, load } from '@ws-ui/webform-editor';
-import { CgAlignBottom, CgAlignLeft, CgAlignRight, CgAlignTop } from 'react-icons/cg';
+import {
+  CgAlignBottom,
+  CgAlignLeft,
+  CgAlignRight,
+  CgAlignTop,
+  CgAlignCenter,
+  CgAlignMiddle,
+  CgShortcut,
+} from 'react-icons/cg';
 
 const commonSettings: TSetting[] = [
   {
@@ -19,9 +27,21 @@ const commonSettings: TSetting[] = [
       { value: 'bottom', icon: CgAlignBottom },
       { value: 'left', icon: CgAlignLeft },
       { value: 'right', icon: CgAlignRight },
-      { value: 'center', icon: CgAlignRight },
-      { value: 'chartArea', icon: CgAlignRight },
+      { value: 'center', icon: CgAlignCenter },
+      { value: 'chartArea', icon: CgAlignMiddle },
+      { value: 'hidden', icon: CgShortcut },
     ],
+  },
+  {
+    key: 'grid',
+    label: 'Display grid',
+    type: ESetting.CHECKBOX,
+  },
+  {
+    key: 'tension',
+    label: 'Tension',
+    type: ESetting.NUMBER_FIELD,
+    defaultValue: 0,
   },
   {
     type: ESetting.DATAGRID,

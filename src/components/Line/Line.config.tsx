@@ -57,12 +57,15 @@ export default {
   },
   defaultProps: {
     name: 'Qodly chart summary',
+    tension: 0,
   },
 } as T4DComponentConfig<ILineProps>;
 
 export interface ILineProps extends webforms.ComponentProps {
   name?: string;
   datasets?: IDataSet[];
+  grid?: boolean;
+  tension?: number;
   legendPosition?: 'top' | 'bottom' | 'left' | 'right' | 'center' | 'chartArea';
 }
 
