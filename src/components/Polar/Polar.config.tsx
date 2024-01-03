@@ -1,12 +1,12 @@
 import { EComponentKind, T4DComponentConfig } from '@ws-ui/webform-editor';
 import { Settings } from '@ws-ui/webform-editor';
-import { MdOutlinePieChart } from 'react-icons/md';
+import { PiChartPolar } from 'react-icons/pi';
 
-import DoughnutPieSettings, { BasicSettings } from './DoughnutPie.settings';
+import PolarSettings, { BasicSettings } from './Polar.settings';
 
 export default {
   craft: {
-    displayName: 'Doughnut & Pie',
+    displayName: 'Polar',
     kind: EComponentKind.BASIC,
     props: {
       name: '',
@@ -14,13 +14,13 @@ export default {
       events: [],
     },
     related: {
-      settings: Settings(DoughnutPieSettings, BasicSettings),
+      settings: Settings(PolarSettings, BasicSettings),
     },
   },
   info: {
-    displayName: 'Doughnut & Pie',
+    displayName: 'Polar',
     exposed: true,
-    icon: MdOutlinePieChart,
+    icon: PiChartPolar,
     events: [
       {
         label: 'On Click',
@@ -56,27 +56,25 @@ export default {
     },
   },
   defaultProps: {
-    type: 'pie',
     name: 'Qodly chart summary',
-    tooltip: true,
     legendPosition: 'top',
-    style: {
-      height: '300px',
-      weight: '300px',
-    },
+    tooltip: true,
+    grid: true,
   },
-} as T4DComponentConfig<IDoughnutPieProps>;
+} as T4DComponentConfig<IPolarProps>;
 
-export interface IDoughnutPieProps extends webforms.ComponentProps {
-  type?: string;
+export interface IPolarProps extends webforms.ComponentProps {
   name?: string;
-  labels?: ILabel[];
   legendPosition?: 'top' | 'bottom' | 'left' | 'right' | 'center' | 'chartArea';
   tooltip?: boolean;
+  grid?: boolean;
+  datasets?: IDataSet[];
 }
 
-export interface ILabel {
-  title: string;
-  backgroundColor?: string;
-  borderColor?: string;
+export interface IDataSet {
+  label: string;
+  backgroundColor: string;
+  borderColor: string;
+  fill: boolean;
+  source: any;
 }

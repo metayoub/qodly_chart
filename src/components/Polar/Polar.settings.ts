@@ -12,23 +12,6 @@ import {
 
 const commonSettings: TSetting[] = [
   {
-    key: 'type',
-    label: 'Type',
-    type: ESetting.SELECT,
-    isClearable: false,
-    options: [
-      {
-        label: 'Pie',
-        value: 'pie',
-      },
-      {
-        label: 'Doughnut',
-        value: 'doughnut',
-      },
-    ],
-    isSearchable: false,
-  },
-  {
     key: 'name',
     label: 'Name',
     type: ESetting.TEXT_FIELD,
@@ -50,21 +33,25 @@ const commonSettings: TSetting[] = [
     ],
   },
   {
+    key: 'grid',
+    label: 'Display grid',
+    type: ESetting.CHECKBOX,
+  },
+  {
     key: 'tooltip',
     label: 'Display tooltip',
     type: ESetting.CHECKBOX,
   },
   {
     type: ESetting.DATAGRID,
-    key: 'labels',
-    name: 'Labels',
-    label: 'Labels',
+    key: 'datasets',
+    name: 'Data',
+    label: 'Data',
     data: [
       {
-        key: 'title',
-        label: 'Title',
+        key: 'label',
+        label: 'Label',
         type: ESetting.TEXT_FIELD,
-        defaultValue: '',
       },
       {
         key: 'backgroundColor',
@@ -87,30 +74,12 @@ const Settings: TSetting[] = [
     type: ESetting.GROUP,
     components: commonSettings,
   },
-  ...load(DEFAULT_SETTINGS).filter(
-    'style.overflow',
-    'display',
-    'style.boxShadow',
-    'style.textShadow',
-    'style.textAlign',
-    'style.textDecorationLine',
-    'style.fontStyle',
-    'style.textTransform',
-  ),
+  ...DEFAULT_SETTINGS,
 ];
 
 export const BasicSettings: TSetting[] = [
   ...commonSettings,
-  ...load(BASIC_SETTINGS).filter(
-    'style.overflow',
-    'display',
-    'style.boxShadow',
-    'style.textShadow',
-    'style.textAlign',
-    'style.textDecorationLine',
-    'style.fontStyle',
-    'style.textTransform',
-  ),
+  ...load(BASIC_SETTINGS).filter('style.overflow'),
 ];
 
 export default Settings;

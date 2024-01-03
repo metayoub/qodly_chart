@@ -89,7 +89,7 @@ const Line: FC<ILineProps> = ({
   };
 
   return (
-    <div ref={connect} style={style} className={cn(className, classNames)}>
+    <div ref={connect} style={style} className={cn('chart', className, classNames)}>
       <LineChart options={options} data={data} />
     </div>
   );
