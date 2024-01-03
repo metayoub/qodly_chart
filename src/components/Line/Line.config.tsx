@@ -58,6 +58,15 @@ export default {
   defaultProps: {
     name: 'Qodly chart summary',
     tension: 0,
+    grid: false,
+    tooltip: true,
+    xAxis: true,
+    yAxis: true,
+    legendPosition: 'top',
+    style: {
+      height: '200px',
+      width: '400px',
+    },
   },
 } as T4DComponentConfig<ILineProps>;
 
@@ -65,6 +74,9 @@ export interface ILineProps extends webforms.ComponentProps {
   name?: string;
   datasets?: IDataSet[];
   grid?: boolean;
+  tooltip?: boolean;
+  xAxis?: boolean;
+  yAxis?: boolean;
   tension?: number;
   legendPosition?: 'top' | 'bottom' | 'left' | 'right' | 'center' | 'chartArea';
 }
@@ -73,6 +85,10 @@ export interface IDataSet {
   label: string;
   backgroundColor: string;
   borderColor: string;
+  pointBackgroundColor: string;
+  pointSize: number;
   fill: boolean;
   source: any;
+  pointStyle?: string;
+  data?: [];
 }

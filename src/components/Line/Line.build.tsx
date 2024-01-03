@@ -33,6 +33,9 @@ const Line: FC<ILineProps> = ({
   legendPosition = 'top',
   grid = false,
   tension = 0,
+  tooltip = true,
+  xAxis = true,
+  yAxis = true,
   style,
   className,
   classNames = [],
@@ -54,7 +57,11 @@ const Line: FC<ILineProps> = ({
         ],
         tension: tension,
         borderColor: set.borderColor,
+        pointBackgroundColor: set.pointBackgroundColor,
+        pointBorderColor: set.pointBackgroundColor, // to change
+        pointStyle: set.pointStyle,
         backgroundColor: set.backgroundColor,
+        pointRadius: set.pointSize,
       })),
     }),
     [datasets, tension],
@@ -66,14 +73,32 @@ const Line: FC<ILineProps> = ({
       legend: {
         display: (legendPosition as string) !== 'hidden',
         position: legendPosition,
+        labels: {
+          color: style?.color,
+          font: {
+            size: (style?.fontSize as number) || 14,
+            family: style?.fontFamily || 'inherit',
+            weight: style?.fontWeight as number,
+          },
+        },
       },
       title: {
         display: name !== '',
         text: name,
+        color: style?.color,
+        font: {
+          size: (style?.fontSize as number) || 14,
+          family: style?.fontFamily || 'inherit',
+          weight: style?.fontWeight as number,
+        },
+      },
+      tooltip: {
+        enabled: tooltip,
       },
     },
     scales: {
       x: {
+        display: xAxis,
         grid: {
           display: grid,
         },
@@ -82,6 +107,7 @@ const Line: FC<ILineProps> = ({
         grid: {
           display: grid,
         },
+        display: yAxis,
       },
     },
   };

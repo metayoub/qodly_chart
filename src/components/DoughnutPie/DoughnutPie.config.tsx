@@ -62,7 +62,7 @@ export default {
     legendPosition: 'top',
     style: {
       height: '300px',
-      weight: '300px',
+      width: '300px',
     },
   },
 } as T4DComponentConfig<IDoughnutPieProps>;

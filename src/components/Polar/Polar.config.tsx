@@ -68,7 +68,7 @@ export interface IPolarProps extends webforms.ComponentProps {
   legendPosition?: 'top' | 'bottom' | 'left' | 'right' | 'center' | 'chartArea';
   tooltip?: boolean;
   grid?: boolean;
-  datasets?: IDataSet[];
+  labels?: IDataSet[];
 }
 
 export interface IDataSet {

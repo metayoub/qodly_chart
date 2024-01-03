@@ -3,7 +3,6 @@ import cn from 'classnames';
 import { FC } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie, Doughnut } from 'react-chartjs-2';
-import { pluginBackgroundColor } from '../shared/plugin';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -62,17 +61,14 @@ const DoughnutPie: FC<IDoughnutPieProps> = ({
       tooltip: {
         enabled: tooltip,
       },
-      customCanvasBackgroundColor: {
-        color: style?.backgroundColor,
-      },
     },
   };
   return (
     <div ref={connect} style={style} className={cn('chart', className, classNames)}>
       {type === 'pie' ? (
-        <Pie data={data} options={options} plugins={[pluginBackgroundColor]} />
+        <Pie data={data} options={options} />
       ) : (
-        <Doughnut data={data} options={options} plugins={[pluginBackgroundColor]} />
+        <Doughnut data={data} options={options} />
       )}
     </div>
   );

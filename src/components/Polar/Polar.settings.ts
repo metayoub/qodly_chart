@@ -44,7 +44,7 @@ const commonSettings: TSetting[] = [
   },
   {
     type: ESetting.DATAGRID,
-    key: 'datasets',
+    key: 'labels',
     name: 'Data',
     label: 'Data',
     data: [
@@ -74,12 +74,30 @@ const Settings: TSetting[] = [
     type: ESetting.GROUP,
     components: commonSettings,
   },
-  ...DEFAULT_SETTINGS,
+  ...load(DEFAULT_SETTINGS).filter(
+    'style.overflow',
+    'display',
+    'style.boxShadow',
+    'style.textShadow',
+    'style.textAlign',
+    'style.textDecorationLine',
+    'style.fontStyle',
+    'style.textTransform',
+  ),
 ];
 
 export const BasicSettings: TSetting[] = [
   ...commonSettings,
-  ...load(BASIC_SETTINGS).filter('style.overflow'),
+  ...load(BASIC_SETTINGS).filter(
+    'style.overflow',
+    'display',
+    'style.boxShadow',
+    'style.textShadow',
+    'style.textAlign',
+    'style.textDecorationLine',
+    'style.fontStyle',
+    'style.textTransform',
+  ),
 ];
 
 export default Settings;

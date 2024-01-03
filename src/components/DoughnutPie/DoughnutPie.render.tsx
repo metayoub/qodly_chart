@@ -4,7 +4,6 @@ import { FC, useEffect, useState } from 'react';
 import { IDoughnutPieProps } from './DoughnutPie.config';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie, Doughnut } from 'react-chartjs-2';
-import { pluginBackgroundColor } from '../shared/plugin';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -68,16 +67,27 @@ const DoughnutPie: FC<IDoughnutPieProps> = ({
       legend: {
         display: (legendPosition as string) !== 'hidden',
         position: legendPosition,
+        labels: {
+          color: style?.color,
+          font: {
+            size: (style?.fontSize as number) || 14,
+            family: style?.fontFamily || 'inherit',
+            weight: style?.fontWeight as number,
+          },
+        },
       },
       title: {
         display: name !== '',
         text: name,
+        color: style?.color,
+        font: {
+          size: (style?.fontSize as number) || 14,
+          family: style?.fontFamily || 'inherit',
+          weight: style?.fontWeight as number,
+        },
       },
       tooltip: {
         enabled: tooltip,
-      },
-      customCanvasBackgroundColor: {
-        color: style?.backgroundColor,
       },
     },
   };
@@ -85,9 +95,9 @@ const DoughnutPie: FC<IDoughnutPieProps> = ({
   return (
     <div ref={connect} style={style} className={cn('chart', className, classNames)}>
       {type === 'pie' ? (
-        <Pie data={value} options={options} plugins={[pluginBackgroundColor]} />
+        <Pie data={value} options={options} />
       ) : (
-        <Doughnut data={value} options={options} plugins={[pluginBackgroundColor]} />
+        <Doughnut data={value} options={options} />
       )}
     </div>
   );

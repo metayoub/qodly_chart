@@ -1,6 +1,6 @@
-import { useRenderer, useSources } from '@ws-ui/webform-editor';
+import { useRenderer } from '@ws-ui/webform-editor';
 import cn from 'classnames';
-import { FC, useEffect, useState, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import { ILineProps } from './Line.config';
 import {
   Chart as ChartJS,
@@ -27,63 +27,94 @@ ChartJS.register(
   Legend,
 );
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
 const Line: FC<ILineProps> = ({
   name,
   datasets = [],
   legendPosition = 'top',
+  tension,
   style,
+  tooltip,
+  grid,
+  xAxis,
+  yAxis,
   className,
   classNames = [],
 }) => {
   const { connect } = useRenderer();
-  const [value, setValue] = useState(() => name);
-  const {
-    sources: { datasource: ds },
-  } = useSources();
 
-  useEffect(() => {
-    if (!ds) return;
+  /*useEffect(() => {
+    if (!datasets) return;
+    console.log('datasets: ', datasets);
 
-    const listener = async (/* event */) => {
-      const v = await ds.getValue<string>();
-      setValue(v || name);
+    const listener = async (value: any) => {
+      // const v = await ds.getValue<string>(value);
+      // console.log('v: ', v);
+      console.log('value: ', value);
+      return v;
     };
 
-    listener();
-
-    ds.addListener('changed', listener);
-
-    return () => {
-      ds.removeListener('changed', listener);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ds]);
+    datasets.map((obj) => ({ ...obj, data: listener(obj.source) }));
+  }, [datasets]);*/
 
   const data = useMemo(
     () => ({
-      labels,
       datasets: datasets.map((set) => ({
         fill: set.fill,
         label: set.label,
-        data: labels.map(() => Math.random() * 100),
+        data: set?.data,
+        tension: tension,
         borderColor: set.borderColor,
+        pointBackgroundColor: set.pointBackgroundColor,
+        pointBorderColor: set.pointBackgroundColor, // to change
+        pointStyle: set.pointStyle,
         backgroundColor: set.backgroundColor,
+        pointRadius: set.pointSize,
       })),
     }),
-    [labels, datasets],
+    [datasets, tension],
   );
 
   const options = {
     responsive: true,
     plugins: {
       legend: {
+        display: (legendPosition as string) !== 'hidden',
         position: legendPosition,
+        labels: {
+          color: style?.color,
+          font: {
+            size: (style?.fontSize as number) || 14,
+            family: style?.fontFamily || 'inherit',
+            weight: style?.fontWeight as number,
+          },
+        },
       },
       title: {
         display: name !== '',
         text: name,
+        color: style?.color,
+        font: {
+          size: (style?.fontSize as number) || 14,
+          family: style?.fontFamily || 'inherit',
+          weight: style?.fontWeight as number,
+        },
+      },
+      tooltip: {
+        enabled: tooltip,
+      },
+    },
+    scales: {
+      x: {
+        display: xAxis,
+        grid: {
+          display: grid,
+        },
+      },
+      y: {
+        grid: {
+          display: grid,
+        },
+        display: yAxis,
       },
     },
   };

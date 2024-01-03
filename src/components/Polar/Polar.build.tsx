@@ -12,6 +12,7 @@ const Polar: FC<IPolarProps> = ({
   legendPosition,
   tooltip = true,
   grid = true,
+  labels = [],
   style,
   className,
   classNames = [],
@@ -21,27 +22,13 @@ const Polar: FC<IPolarProps> = ({
   } = useEnhancedNode();
 
   const data = {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    labels: labels.map((elm) => elm.label),
     datasets: [
       {
-        label: '# of Votes',
-        data: [12, 19, 3, 15, 5, 13],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.5)',
-          'rgba(54, 162, 235, 0.5)',
-          'rgba(255, 206, 86, 0.5)',
-          'rgba(75, 192, 192, 0.5)',
-          'rgba(153, 102, 255, 0.5)',
-          'rgba(255, 159, 64, 0.5)',
-        ],
-        borderColor: [
-          'rgba(255, 99, 132)',
-          'rgba(54, 162, 235)',
-          'rgba(255, 206, 86)',
-          'rgba(75, 192, 192)',
-          'rgba(153, 102, 255)',
-          'rgba(255, 159, 64)',
-        ],
+        label: '# of Votes', // make it dynamic
+        data: labels.map(() => Math.random()),
+        backgroundColor: labels.map((e) => e.backgroundColor),
+        borderColor: labels.map((e) => e.borderColor),
       },
     ],
   };
@@ -52,13 +39,29 @@ const Polar: FC<IPolarProps> = ({
       legend: {
         display: (legendPosition as string) !== 'hidden',
         position: legendPosition,
+        labels: {
+          font: {
+            family: style?.fontFamily || 'inherit',
+          },
+        },
       },
       title: {
         display: name !== '',
         text: name,
+        color: style?.color,
+        font: {
+          size: (style?.fontSize as number) || 14,
+          family: style?.fontFamily || 'inherit',
+          weight: style?.fontWeight as number,
+        },
       },
       tooltip: {
         enabled: tooltip,
+      },
+    },
+    scales: {
+      r: {
+        display: grid,
       },
     },
   };

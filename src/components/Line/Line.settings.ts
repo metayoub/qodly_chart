@@ -38,6 +38,11 @@ const commonSettings: TSetting[] = [
     type: ESetting.CHECKBOX,
   },
   {
+    key: 'tooltip',
+    label: 'Display tooltip',
+    type: ESetting.CHECKBOX,
+  },
+  {
     key: 'tension',
     label: 'Tension',
     type: ESetting.NUMBER_FIELD,
@@ -70,11 +75,50 @@ const commonSettings: TSetting[] = [
         type: ESetting.TEXT_FIELD,
       },
       {
+        key: 'pointBackgroundColor',
+        label: 'Point Color',
+        type: ESetting.TEXT_FIELD,
+      },
+      {
+        key: 'pointStyle',
+        label: 'Point Styles',
+        type: ESetting.TEXT_FIELD,
+        /*options: [
+          { value: 'circle', label: 'Circle' },
+          { value: 'cross', label: 'Cross' },
+          { value: 'crossRot', label: 'CrossRot' },
+          { value: 'dash', label: 'Dash' },
+          { value: 'line', label: 'Line' },
+          { value: 'rect', label: 'Rect' },
+          { value: 'rectRounded', label: 'RectRounded' },
+          { value: 'rectRot', label: 'RectRot' },
+          { value: 'star', label: 'Star' },
+          { value: 'triangle', label: 'Triangle' },
+          { value: '', label: 'none' },
+        ],*/
+      },
+      {
+        key: 'pointSize',
+        label: 'Point Size',
+        type: ESetting.NUMBER_FIELD,
+        defaultValue: 10,
+      },
+      {
         key: 'fill',
         label: 'Fill',
         type: ESetting.CHECKBOX,
       },
     ],
+  },
+  {
+    key: 'xAxis',
+    label: 'Display x-Axis Value',
+    type: ESetting.CHECKBOX,
+  },
+  {
+    key: 'yAxis',
+    label: 'Display y-Axis Value',
+    type: ESetting.CHECKBOX,
   },
 ];
 
@@ -85,12 +129,30 @@ const Settings: TSetting[] = [
     type: ESetting.GROUP,
     components: commonSettings,
   },
-  ...DEFAULT_SETTINGS,
+  ...load(DEFAULT_SETTINGS).filter(
+    'style.overflow',
+    'display',
+    'style.boxShadow',
+    'style.textShadow',
+    'style.textAlign',
+    'style.textDecorationLine',
+    'style.fontStyle',
+    'style.textTransform',
+  ),
 ];
 
 export const BasicSettings: TSetting[] = [
   ...commonSettings,
-  ...load(BASIC_SETTINGS).filter('style.overflow'),
+  ...load(BASIC_SETTINGS).filter(
+    'style.overflow',
+    'display',
+    'style.boxShadow',
+    'style.textShadow',
+    'style.textAlign',
+    'style.textDecorationLine',
+    'style.fontStyle',
+    'style.textTransform',
+  ),
 ];
 
 export default Settings;
