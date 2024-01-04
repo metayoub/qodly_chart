@@ -90,5 +90,4 @@ export interface IDataSet {
   fill: boolean;
   source: any;
   pointStyle?: string;
-  data?: [];
 }

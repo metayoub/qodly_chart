@@ -62,7 +62,7 @@ const commonSettings: TSetting[] = [
       {
         key: 'source',
         label: 'Source',
-        type: ESetting.DS_AUTO_SUGGEST,
+        type: ESetting.TEXT_FIELD,
       },
       {
         key: 'backgroundColor',

@@ -1,6 +1,6 @@
-import { useRenderer } from '@ws-ui/webform-editor';
+import { useRenderer, useSources } from '@ws-ui/webform-editor';
 import cn from 'classnames';
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useState, useEffect } from 'react';
 import { ILineProps } from './Line.config';
 import {
   Chart as ChartJS,
@@ -40,47 +40,73 @@ const Line: FC<ILineProps> = ({
   className,
   classNames = [],
 }) => {
+  const empty: any[] = [];
   const { connect } = useRenderer();
+  const [value, setValue] = useState({
+    datasets: datasets.map((set) => ({
+      fill: set.fill,
+      label: set.label,
+      data: empty,
+      parsing: {
+        yAxisKey: set.source,
+      },
+      tension: tension,
+      borderColor: set.borderColor,
+      pointBackgroundColor: set.pointBackgroundColor,
+      pointBorderColor: set.pointBackgroundColor,
+      pointStyle: set.pointStyle || undefined,
+      backgroundColor: set.backgroundColor,
+      pointRadius: set.pointSize,
+    })),
+  });
+  const {
+    sources: { datasource: ds },
+  } = useSources();
 
-  /*useEffect(() => {
-    if (!datasets) return;
-    console.log('datasets: ', datasets);
+  useEffect(() => {
+    if (!ds) return;
 
-    const listener = async (value: any) => {
-      // const v = await ds.getValue<string>(value);
-      // console.log('v: ', v);
-      console.log('value: ', value);
-      return v;
+    const listener = async (/* event */) => {
+      const v = await ds.getValue<Array<any>>();
+
+      setValue((prevValue) => ({
+        ...prevValue,
+        datasets: datasets.map((_set, index) => ({
+          ...prevValue.datasets[index],
+          data: v,
+        })),
+      }));
     };
 
-    datasets.map((obj) => ({ ...obj, data: listener(obj.source) }));
-  }, [datasets]);*/
+    listener();
 
-  const data = useMemo(
+    ds.addListener('changed', listener);
+
+    return () => {
+      ds.removeListener('changed', listener);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ds]);
+
+  const options = useMemo(
     () => ({
-      datasets: datasets.map((set) => ({
-        fill: set.fill,
-        label: set.label,
-        data: set?.data,
-        tension: tension,
-        borderColor: set.borderColor,
-        pointBackgroundColor: set.pointBackgroundColor,
-        pointBorderColor: set.pointBackgroundColor, // to change
-        pointStyle: set.pointStyle,
-        backgroundColor: set.backgroundColor,
-        pointRadius: set.pointSize,
-      })),
-    }),
-    [datasets, tension],
-  );
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: (legendPosition as string) !== 'hidden',
-        position: legendPosition,
-        labels: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: (legendPosition as string) !== 'hidden',
+          position: legendPosition,
+          labels: {
+            color: style?.color,
+            font: {
+              size: (style?.fontSize as number) || 14,
+              family: style?.fontFamily || 'inherit',
+              weight: style?.fontWeight as number,
+            },
+          },
+        },
+        title: {
+          display: name !== '',
+          text: name,
           color: style?.color,
           font: {
             size: (style?.fontSize as number) || 14,
@@ -88,40 +114,31 @@ const Line: FC<ILineProps> = ({
             weight: style?.fontWeight as number,
           },
         },
-      },
-      title: {
-        display: name !== '',
-        text: name,
-        color: style?.color,
-        font: {
-          size: (style?.fontSize as number) || 14,
-          family: style?.fontFamily || 'inherit',
-          weight: style?.fontWeight as number,
+        tooltip: {
+          enabled: tooltip,
         },
       },
-      tooltip: {
-        enabled: tooltip,
-      },
-    },
-    scales: {
-      x: {
-        display: xAxis,
-        grid: {
-          display: grid,
+      scales: {
+        x: {
+          display: xAxis,
+          grid: {
+            display: grid,
+          },
+        },
+        y: {
+          grid: {
+            display: grid,
+          },
+          display: yAxis,
         },
       },
-      y: {
-        grid: {
-          display: grid,
-        },
-        display: yAxis,
-      },
-    },
-  };
+    }),
+    [legendPosition, style, grid, xAxis, yAxis, tooltip, name],
+  );
 
   return (
     <div ref={connect} style={style} className={cn('chart', className, classNames)}>
-      <LineChart options={options} data={data} />
+      <LineChart options={options} data={value} />
     </div>
   );
 };

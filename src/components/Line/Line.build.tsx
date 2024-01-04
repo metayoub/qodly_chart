@@ -67,13 +67,25 @@ const Line: FC<ILineProps> = ({
     [datasets, tension],
   );
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: (legendPosition as string) !== 'hidden',
-        position: legendPosition,
-        labels: {
+  const options = useMemo(
+    () => ({
+      responsive: true,
+      plugins: {
+        legend: {
+          display: (legendPosition as string) !== 'hidden',
+          position: legendPosition,
+          labels: {
+            color: style?.color,
+            font: {
+              size: (style?.fontSize as number) || 14,
+              family: style?.fontFamily || 'inherit',
+              weight: style?.fontWeight as number,
+            },
+          },
+        },
+        title: {
+          display: name !== '',
+          text: name,
           color: style?.color,
           font: {
             size: (style?.fontSize as number) || 14,
@@ -81,36 +93,27 @@ const Line: FC<ILineProps> = ({
             weight: style?.fontWeight as number,
           },
         },
-      },
-      title: {
-        display: name !== '',
-        text: name,
-        color: style?.color,
-        font: {
-          size: (style?.fontSize as number) || 14,
-          family: style?.fontFamily || 'inherit',
-          weight: style?.fontWeight as number,
+        tooltip: {
+          enabled: tooltip,
         },
       },
-      tooltip: {
-        enabled: tooltip,
-      },
-    },
-    scales: {
-      x: {
-        display: xAxis,
-        grid: {
-          display: grid,
+      scales: {
+        x: {
+          display: xAxis,
+          grid: {
+            display: grid,
+          },
+        },
+        y: {
+          grid: {
+            display: grid,
+          },
+          display: yAxis,
         },
       },
-      y: {
-        grid: {
-          display: grid,
-        },
-        display: yAxis,
-      },
-    },
-  };
+    }),
+    [legendPosition, style, grid, xAxis, yAxis, tooltip, name],
+  );
 
   return (
     <div ref={connect} style={style} className={cn('chart', className, classNames)}>
