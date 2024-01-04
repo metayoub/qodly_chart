@@ -43,6 +43,12 @@ const commonSettings: TSetting[] = [
     type: ESetting.CHECKBOX,
   },
   {
+    key: 'tooltipLabel',
+    label: 'tooltipLabel',
+    type: ESetting.TEXT_FIELD,
+    defaultValue: 'Value',
+  },
+  {
     type: ESetting.DATAGRID,
     key: 'labels',
     name: 'Data',

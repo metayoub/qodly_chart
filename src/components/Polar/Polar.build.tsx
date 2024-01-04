@@ -1,6 +1,6 @@
 import { useEnhancedNode } from '@ws-ui/webform-editor';
 import cn from 'classnames';
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { IPolarProps } from './Polar.config';
 import { Chart as ChartJS, RadialLinearScale, ArcElement, Tooltip, Legend } from 'chart.js';
 import { PolarArea } from 'react-chartjs-2';
@@ -11,6 +11,7 @@ const Polar: FC<IPolarProps> = ({
   name,
   legendPosition,
   tooltip = true,
+  tooltipLabel,
   grid = true,
   labels = [],
   style,
@@ -21,50 +22,56 @@ const Polar: FC<IPolarProps> = ({
     connectors: { connect },
   } = useEnhancedNode();
 
-  const data = {
-    labels: labels.map((elm) => elm.label),
-    datasets: [
-      {
-        label: '# of Votes', // make it dynamic
-        data: labels.map(() => Math.random()),
-        backgroundColor: labels.map((e) => e.backgroundColor),
-        borderColor: labels.map((e) => e.borderColor),
-      },
-    ],
-  };
+  const data = useMemo(
+    () => ({
+      labels: labels.map((elm) => elm.label),
+      datasets: [
+        {
+          label: tooltipLabel,
+          data: labels.map(() => Math.random()),
+          backgroundColor: labels.map((e) => e.backgroundColor),
+          borderColor: labels.map((e) => e.borderColor),
+        },
+      ],
+    }),
+    [labels, tooltipLabel],
+  );
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: (legendPosition as string) !== 'hidden',
-        position: legendPosition,
-        labels: {
-          font: {
-            family: style?.fontFamily || 'inherit',
+  const options = useMemo(
+    () => ({
+      responsive: true,
+      plugins: {
+        legend: {
+          display: (legendPosition as string) !== 'hidden',
+          position: legendPosition,
+          labels: {
+            font: {
+              family: style?.fontFamily || 'inherit',
+            },
           },
         },
-      },
-      title: {
-        display: name !== '',
-        text: name,
-        color: style?.color,
-        font: {
-          size: (style?.fontSize as number) || 14,
-          family: style?.fontFamily || 'inherit',
-          weight: style?.fontWeight as number,
+        title: {
+          display: name !== '',
+          text: name,
+          color: style?.color,
+          font: {
+            size: (style?.fontSize as number) || 14,
+            family: style?.fontFamily || 'inherit',
+            weight: style?.fontWeight as number,
+          },
+        },
+        tooltip: {
+          enabled: tooltip,
         },
       },
-      tooltip: {
-        enabled: tooltip,
+      scales: {
+        r: {
+          display: grid,
+        },
       },
-    },
-    scales: {
-      r: {
-        display: grid,
-      },
-    },
-  };
+    }),
+    [legendPosition, style, name, grid, tooltip],
+  );
 
   return (
     <div ref={connect} style={style} className={cn('chart', className, classNames)}>

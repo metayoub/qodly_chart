@@ -59,7 +59,12 @@ export default {
     name: 'Qodly chart summary',
     legendPosition: 'top',
     tooltip: true,
+    tooltipLabel: 'Value',
     grid: true,
+    style: {
+      height: '300px',
+      width: '300px',
+    },
   },
 } as T4DComponentConfig<IPolarProps>;
 
@@ -67,6 +72,7 @@ export interface IPolarProps extends webforms.ComponentProps {
   name?: string;
   legendPosition?: 'top' | 'bottom' | 'left' | 'right' | 'center' | 'chartArea';
   tooltip?: boolean;
+  tooltipLabel?: string;
   grid?: boolean;
   labels?: IDataSet[];
 }
