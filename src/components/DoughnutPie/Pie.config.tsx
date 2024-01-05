@@ -2,11 +2,11 @@ import { EComponentKind, T4DComponentConfig } from '@ws-ui/webform-editor';
 import { Settings } from '@ws-ui/webform-editor';
 import { MdOutlinePieChart } from 'react-icons/md';
 
-import DoughnutPieSettings, { BasicSettings } from './DoughnutPie.settings';
+import PieSettings, { BasicSettings } from './Pie.settings';
 
 export default {
   craft: {
-    displayName: 'Doughnut & Pie',
+    displayName: 'Pie',
     kind: EComponentKind.BASIC,
     props: {
       name: '',
@@ -14,11 +14,11 @@ export default {
       events: [],
     },
     related: {
-      settings: Settings(DoughnutPieSettings, BasicSettings),
+      settings: Settings(PieSettings, BasicSettings),
     },
   },
   info: {
-    displayName: 'Doughnut & Pie',
+    displayName: 'Pie',
     exposed: true,
     icon: MdOutlinePieChart,
     events: [
@@ -56,8 +56,8 @@ export default {
     },
   },
   defaultProps: {
-    type: 'pie',
-    name: 'Qodly chart summary',
+    title: 'Qodly chart summary',
+    raduis: 0,
     tooltip: true,
     legendPosition: 'top',
     style: {
@@ -65,18 +65,16 @@ export default {
       width: '300px',
     },
   },
-} as T4DComponentConfig<IDoughnutPieProps>;
+} as T4DComponentConfig<IPieProps>;
 
-export interface IDoughnutPieProps extends webforms.ComponentProps {
-  type?: string;
-  name?: string;
-  labels?: ILabel[];
+export interface IPieProps extends webforms.ComponentProps {
+  title?: string;
+  raduis?: number;
+  colors?: IColors[];
   legendPosition?: 'top' | 'bottom' | 'left' | 'right' | 'center' | 'chartArea';
   tooltip?: boolean;
 }
 
-export interface ILabel {
-  title: string;
-  backgroundColor?: string;
-  borderColor?: string;
+export interface IColors {
+  color?: string;
 }

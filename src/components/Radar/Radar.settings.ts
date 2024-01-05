@@ -12,27 +12,10 @@ import {
 
 const commonSettings: TSetting[] = [
   {
-    key: 'type',
-    label: 'Type',
-    type: ESetting.SELECT,
-    isClearable: false,
-    options: [
-      {
-        label: 'Pie',
-        value: 'pie',
-      },
-      {
-        label: 'Doughnut',
-        value: 'doughnut',
-      },
-    ],
-    isSearchable: false,
-  },
-  {
-    key: 'name',
-    label: 'Name',
+    key: 'label',
+    label: 'Label',
     type: ESetting.TEXT_FIELD,
-    defaultValue: 'Qodly chart summary',
+    defaultValue: 'Qodly Radar Chart',
   },
   {
     key: 'legendPosition',
@@ -50,21 +33,35 @@ const commonSettings: TSetting[] = [
     ],
   },
   {
+    key: 'grid',
+    label: 'Display Grid',
+    type: ESetting.CHECKBOX,
+  },
+  {
+    key: 'tick',
+    label: 'Display Ticks',
+    type: ESetting.CHECKBOX,
+  },
+  {
     key: 'tooltip',
-    label: 'Display tooltip',
+    label: 'Display Tooltip',
     type: ESetting.CHECKBOX,
   },
   {
     type: ESetting.DATAGRID,
-    key: 'labels',
-    name: 'Labels',
-    label: 'Labels',
+    key: 'datasets',
+    name: 'Data',
+    label: 'Data',
     data: [
       {
-        key: 'title',
-        label: 'Title',
+        key: 'label',
+        label: 'Label',
         type: ESetting.TEXT_FIELD,
-        defaultValue: '',
+      },
+      {
+        key: 'source',
+        label: 'Source',
+        type: ESetting.TEXT_FIELD,
       },
       {
         key: 'backgroundColor',
@@ -76,7 +73,56 @@ const commonSettings: TSetting[] = [
         label: 'Border Color',
         type: ESetting.TEXT_FIELD,
       },
+      {
+        key: 'pointBackgroundColor',
+        label: 'Point Color',
+        type: ESetting.TEXT_FIELD,
+      },
+      {
+        key: 'pointStyle',
+        label: 'Point Styles',
+        type: ESetting.TEXT_FIELD,
+        /*options: [
+          { value: 'circle', label: 'Circle' },
+          { value: 'cross', label: 'Cross' },
+          { value: 'crossRot', label: 'CrossRot' },
+          { value: 'dash', label: 'Dash' },
+          { value: 'line', label: 'Line' },
+          { value: 'rect', label: 'Rect' },
+          { value: 'rectRounded', label: 'RectRounded' },
+          { value: 'rectRot', label: 'RectRot' },
+          { value: 'star', label: 'Star' },
+          { value: 'triangle', label: 'Triangle' },
+          { value: '', label: 'none' },
+        ],*/
+      },
+      {
+        key: 'pointSize',
+        label: 'Point Size',
+        type: ESetting.NUMBER_FIELD,
+        defaultValue: 10,
+      },
+      {
+        key: 'fill',
+        label: 'Fill',
+        type: ESetting.CHECKBOX,
+      },
     ],
+  },
+  {
+    key: 'min',
+    label: 'Suggested Min',
+    type: ESetting.NUMBER_FIELD,
+  },
+  {
+    key: 'max',
+    label: 'Suggested Max',
+    type: ESetting.NUMBER_FIELD,
+  },
+  {
+    key: 'step',
+    label: 'Suggested Step',
+    type: ESetting.NUMBER_FIELD,
   },
 ];
 

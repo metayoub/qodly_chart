@@ -1,18 +1,18 @@
 import { useRenderer, useSources } from '@ws-ui/webform-editor';
 import cn from 'classnames';
 import { FC, useEffect, useState } from 'react';
-import { IDoughnutPieProps } from './DoughnutPie.config';
+import { IPieProps } from './Pie.config';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie, Doughnut } from 'react-chartjs-2';
+import { Pie as PieChart } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const DoughnutPie: FC<IDoughnutPieProps> = ({
-  labels = [],
-  type,
-  name,
+const Pie: FC<IPieProps> = ({
+  colors = [],
+  title,
   legendPosition,
   tooltip,
+  raduis,
   style,
   className,
   classNames = [],
@@ -23,11 +23,11 @@ const DoughnutPie: FC<IDoughnutPieProps> = ({
     datasets: [
       {
         data: empty,
-        backgroundColor: labels.map((e) => e.backgroundColor),
-        borderColor: labels.map((e) => e.borderColor),
+        backgroundColor: colors.map((e) => e.color),
+        borderColor: colors.map((e) => e.color),
       },
     ],
-    labels: labels.map((e) => e.title),
+    labels: ['1', '2', '3', '4', '5'], // labels.map((e) => e.title),
   });
   const {
     sources: { datasource: ds },
@@ -42,11 +42,11 @@ const DoughnutPie: FC<IDoughnutPieProps> = ({
         datasets: [
           {
             data: v,
-            backgroundColor: labels.map((e) => e.backgroundColor),
-            borderColor: labels.map((e) => e.borderColor),
+            backgroundColor: colors.map((e) => e.color),
+            borderColor: colors.map((e) => e.color),
           },
         ],
-        labels: labels.map((e) => e.title),
+        labels: ['1', '2', '3', '4', '5'], // labels.map((e) => e.title),
       };
       setValue(data);
     };
@@ -63,6 +63,7 @@ const DoughnutPie: FC<IDoughnutPieProps> = ({
 
   const options = {
     responsive: true,
+    cutout: raduis,
     plugins: {
       legend: {
         display: (legendPosition as string) !== 'hidden',
@@ -77,8 +78,8 @@ const DoughnutPie: FC<IDoughnutPieProps> = ({
         },
       },
       title: {
-        display: name !== '',
-        text: name,
+        display: title !== '',
+        text: title,
         color: style?.color,
         font: {
           size: (style?.fontSize as number) || 14,
@@ -94,13 +95,9 @@ const DoughnutPie: FC<IDoughnutPieProps> = ({
 
   return (
     <div ref={connect} style={style} className={cn('chart', className, classNames)}>
-      {type === 'pie' ? (
-        <Pie data={value} options={options} />
-      ) : (
-        <Doughnut data={value} options={options} />
-      )}
+      <PieChart data={value} options={options} />
     </div>
   );
 };
 
-export default DoughnutPie;
+export default Pie;

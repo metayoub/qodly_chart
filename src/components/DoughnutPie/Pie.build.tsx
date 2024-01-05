@@ -2,17 +2,17 @@ import { useEnhancedNode } from '@ws-ui/webform-editor';
 import cn from 'classnames';
 import { FC } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie, Doughnut } from 'react-chartjs-2';
+import { Pie as PieChart } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-import { IDoughnutPieProps } from './DoughnutPie.config';
+import { IPieProps } from './Pie.config';
 
-const DoughnutPie: FC<IDoughnutPieProps> = ({
-  labels = [],
-  type,
+const Pie: FC<IPieProps> = ({
+  colors = [],
   legendPosition,
-  name,
+  title,
+  raduis,
   tooltip,
   style,
   className,
@@ -22,19 +22,22 @@ const DoughnutPie: FC<IDoughnutPieProps> = ({
     connectors: { connect },
   } = useEnhancedNode();
 
+  const labels = ['Value 1', 'Value 2', 'Value 3', 'Value 4', 'Value 5'];
+
   const data = {
     datasets: [
       {
         data: labels.map(() => 1),
-        backgroundColor: labels.map((e) => e.backgroundColor),
-        borderColor: labels.map((e) => e.borderColor),
+        backgroundColor: colors.map((e) => e.color),
+        borderColor: colors.map((e) => e.color),
       },
     ],
-    labels: labels.map((e) => e.title),
+    labels: labels,
   };
 
   const options = {
     responsive: true,
+    cutout: raduis,
     plugins: {
       legend: {
         display: (legendPosition as string) !== 'hidden',
@@ -49,8 +52,8 @@ const DoughnutPie: FC<IDoughnutPieProps> = ({
         },
       },
       title: {
-        display: name !== '',
-        text: name,
+        display: title !== '',
+        text: title,
         color: style?.color,
         font: {
           size: (style?.fontSize as number) || 14,
@@ -65,13 +68,9 @@ const DoughnutPie: FC<IDoughnutPieProps> = ({
   };
   return (
     <div ref={connect} style={style} className={cn('chart', className, classNames)}>
-      {type === 'pie' ? (
-        <Pie data={data} options={options} />
-      ) : (
-        <Doughnut data={data} options={options} />
-      )}
+      <PieChart data={data} options={options} />
     </div>
   );
 };
 
-export default DoughnutPie;
+export default Pie;

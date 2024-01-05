@@ -1,9 +1,9 @@
-import config, { IDoughnutPieProps } from './DoughnutPie.config';
+import config, { IPieProps } from './Pie.config';
 import { T4DComponent, useEnhancedEditor } from '@ws-ui/webform-editor';
-import Build from './DoughnutPie.build';
-import Render from './DoughnutPie.render';
+import Build from './Pie.build';
+import Render from './Pie.render';
 
-const DoughnutPie: T4DComponent<IDoughnutPieProps> = (props) => {
+const Pie: T4DComponent<IPieProps> = (props) => {
   const { enabled } = useEnhancedEditor((state) => ({
     enabled: state.options.enabled,
   }));
@@ -11,8 +11,8 @@ const DoughnutPie: T4DComponent<IDoughnutPieProps> = (props) => {
   return enabled ? <Build {...props} /> : <Render {...props} />;
 };
 
-DoughnutPie.craft = config.craft;
-DoughnutPie.info = config.info;
-DoughnutPie.defaultProps = config.defaultProps;
+Pie.craft = config.craft;
+Pie.info = config.info;
+Pie.defaultProps = config.defaultProps;
 
-export default DoughnutPie;
+export default Pie;
