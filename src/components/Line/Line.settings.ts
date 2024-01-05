@@ -43,12 +43,6 @@ const commonSettings: TSetting[] = [
     type: ESetting.CHECKBOX,
   },
   {
-    key: 'tension',
-    label: 'Tension',
-    type: ESetting.NUMBER_FIELD,
-    defaultValue: 0,
-  },
-  {
     type: ESetting.DATAGRID,
     key: 'datasets',
     name: 'Data',
@@ -101,7 +95,13 @@ const commonSettings: TSetting[] = [
         key: 'pointSize',
         label: 'Point Size',
         type: ESetting.NUMBER_FIELD,
-        defaultValue: 10,
+        defaultValue: 5,
+      },
+      {
+        key: 'tension',
+        label: 'Tension',
+        type: ESetting.NUMBER_FIELD,
+        defaultValue: 0,
       },
       {
         key: 'fill',

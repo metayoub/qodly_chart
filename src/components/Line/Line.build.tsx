@@ -32,7 +32,6 @@ const Line: FC<ILineProps> = ({
   datasets = [],
   legendPosition = 'top',
   grid = false,
-  tension = 0,
   tooltip = true,
   xAxis = true,
   yAxis = true,
@@ -55,16 +54,16 @@ const Line: FC<ILineProps> = ({
           { x: 'value 3', y: Math.random() * 10 },
           { x: 'value 4', y: Math.random() * 10 },
         ],
-        tension: tension,
-        borderColor: set.borderColor,
-        pointBackgroundColor: set.pointBackgroundColor,
-        pointBorderColor: set.pointBackgroundColor, // to change
+        tension: set.tension,
+        borderColor: set.borderColor || set.backgroundColor,
+        pointBackgroundColor: set.pointBackgroundColor || set.backgroundColor,
+        pointBorderColor: set.pointBackgroundColor || set.borderColor || set.backgroundColor,
         pointStyle: set.pointStyle,
-        backgroundColor: set.backgroundColor,
+        backgroundColor: set.backgroundColor || set.borderColor,
         pointRadius: set.pointSize,
       })),
     }),
-    [datasets, tension],
+    [datasets],
   );
 
   const options = useMemo(

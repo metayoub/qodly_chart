@@ -57,7 +57,6 @@ export default {
   },
   defaultProps: {
     name: 'Qodly chart summary',
-    tension: 0,
     grid: false,
     tooltip: true,
     xAxis: true,
@@ -77,7 +76,6 @@ export interface ILineProps extends webforms.ComponentProps {
   tooltip?: boolean;
   xAxis?: boolean;
   yAxis?: boolean;
-  tension?: number;
   legendPosition?: 'top' | 'bottom' | 'left' | 'right' | 'center' | 'chartArea';
 }
 
@@ -87,6 +85,7 @@ export interface IDataSet {
   borderColor: string;
   pointBackgroundColor: string;
   pointSize: number;
+  tension: number;
   fill: boolean;
   source: any;
   pointStyle?: string;
