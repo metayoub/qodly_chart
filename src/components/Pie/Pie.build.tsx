@@ -35,7 +35,7 @@ const Pie: FC<IPieProps> = ({
       datasets: [
         {
           data: labels.map(() => 1),
-          backgroundColor: colorgenerated.map((e) => e + '33'),
+          backgroundColor: colorgenerated.map((e) => e + '50'),
           borderColor: colorgenerated,
         },
       ],
