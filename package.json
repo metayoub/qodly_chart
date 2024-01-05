@@ -22,6 +22,7 @@
     }
   },
   "dependencies": {
+    "@ctrl/tinycolor": "^4.0.2",
     "@ws-ui/webform-editor": "^0.0.56",
     "chart.js": "^4.4.1",
     "react": "^17.0.2",

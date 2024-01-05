@@ -1,9 +1,10 @@
 import { useRenderer, useSources } from '@ws-ui/webform-editor';
 import cn from 'classnames';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, useMemo } from 'react';
 import { IPieProps } from './Pie.config';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie as PieChart } from 'react-chartjs-2';
+import { generateColorPalette, colorToHex } from '../shared/colorUtils';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -23,11 +24,11 @@ const Pie: FC<IPieProps> = ({
     datasets: [
       {
         data: empty,
-        backgroundColor: colors.map((e) => e.color),
-        borderColor: colors.map((e) => e.color),
+        backgroundColor: empty,
+        borderColor: empty,
       },
     ],
-    labels: ['1', '2', '3', '4', '5'], // labels.map((e) => e.title),
+    labels: empty,
   });
   const {
     sources: { datasource: ds },
@@ -38,15 +39,20 @@ const Pie: FC<IPieProps> = ({
 
     const listener = async (/* event */) => {
       const v = await ds.getValue<Array<any>>();
+      const colorgenerated = generateColorPalette(v.length, ...colors.map((e) => e.color || 'red')); // find a solution to replace red
       const data = {
         datasets: [
           {
-            data: v,
-            backgroundColor: colors.map((e) => e.color),
-            borderColor: colors.map((e) => e.color),
+            data: v.map((e) => e.value),
+            backgroundColor: v.map(
+              (e, index) =>
+                (e.color && (e.borderColor ? e.color : colorToHex(e.color) + '50')) ||
+                colorgenerated[index] + '50',
+            ),
+            borderColor: v.map((e, index) => e.borderColor || e.color || colorgenerated[index]),
           },
         ],
-        labels: ['1', '2', '3', '4', '5'], // labels.map((e) => e.title),
+        labels: v.map((e) => e.label),
       };
       setValue(data);
     };
@@ -61,14 +67,26 @@ const Pie: FC<IPieProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ds]);
 
-  const options = {
-    responsive: true,
-    cutout: raduis,
-    plugins: {
-      legend: {
-        display: (legendPosition as string) !== 'hidden',
-        position: legendPosition,
-        labels: {
+  const options = useMemo(
+    () => ({
+      responsive: true,
+      cutout: raduis,
+      plugins: {
+        legend: {
+          display: (legendPosition as string) !== 'hidden',
+          position: legendPosition,
+          labels: {
+            color: style?.color,
+            font: {
+              size: (style?.fontSize as number) || 14,
+              family: style?.fontFamily || 'inherit',
+              weight: style?.fontWeight as number,
+            },
+          },
+        },
+        title: {
+          display: title !== '',
+          text: title,
           color: style?.color,
           font: {
             size: (style?.fontSize as number) || 14,
@@ -76,22 +94,13 @@ const Pie: FC<IPieProps> = ({
             weight: style?.fontWeight as number,
           },
         },
-      },
-      title: {
-        display: title !== '',
-        text: title,
-        color: style?.color,
-        font: {
-          size: (style?.fontSize as number) || 14,
-          family: style?.fontFamily || 'inherit',
-          weight: style?.fontWeight as number,
+        tooltip: {
+          enabled: tooltip,
         },
       },
-      tooltip: {
-        enabled: tooltip,
-      },
-    },
-  };
+    }),
+    [legendPosition, tooltip, style, title, raduis],
+  );
 
   return (
     <div ref={connect} style={style} className={cn('chart', className, classNames)}>
