@@ -1,4 +1,9 @@
-import { TinyColor } from '@ctrl/tinycolor';
+import { TinyColor, random } from '@ctrl/tinycolor';
+
+export const randomColor = (): string => {
+  const color = random();
+  return color.toHexString();
+};
 
 export const colorToHex = (baseColor: string): string => {
   const color = new TinyColor(baseColor);
@@ -13,7 +18,7 @@ export const generateColorPalette = (
   let colors;
 
   if (baseColors.length === 0) {
-    colors = new TinyColor('red').polyad(numberOfColorsPerColor);
+    colors = new TinyColor(randomColor()).polyad(numberOfColorsPerColor);
   } else if (baseColors.length === 1) {
     colors = new TinyColor(baseColors[0]).polyad(numberOfColorsPerColor);
   } else {

@@ -4,7 +4,7 @@ import { FC, useEffect, useState, useMemo } from 'react';
 import { IPieProps } from './Pie.config';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie as PieChart } from 'react-chartjs-2';
-import { generateColorPalette, colorToHex } from '../shared/colorUtils';
+import { generateColorPalette, colorToHex, randomColor } from '../shared/colorUtils';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -39,7 +39,10 @@ const Pie: FC<IPieProps> = ({
 
     const listener = async (/* event */) => {
       const v = await ds.getValue<Array<any>>();
-      const colorgenerated = generateColorPalette(v.length, ...colors.map((e) => e.color || 'red')); // find a solution to replace red
+      const colorgenerated = generateColorPalette(
+        v.length,
+        ...colors.map((e) => e.color || randomColor()),
+      );
       const data = {
         datasets: [
           {

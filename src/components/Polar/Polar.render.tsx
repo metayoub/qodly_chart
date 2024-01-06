@@ -4,6 +4,7 @@ import { FC, useEffect, useState, useMemo } from 'react';
 import { IPolarProps } from './Polar.config';
 import { Chart as ChartJS, RadialLinearScale, ArcElement, Tooltip, Legend } from 'chart.js';
 import { PolarArea } from 'react-chartjs-2';
+import { generateColorPalette, randomColor } from '../shared/colorUtils';
 
 ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
@@ -13,21 +14,26 @@ const Polar: FC<IPolarProps> = ({
   tooltip = true,
   tooltipLabel,
   grid = true,
-  labels = [],
+  min,
+  max,
+  step,
+  tick = true,
+  colors = [],
   style,
   className,
   classNames = [],
 }) => {
   const { connect } = useRenderer();
   const empty: any[] = [];
+
   const [value, setValue] = useState({
-    labels: labels.map((elm) => elm.label),
+    labels: empty,
     datasets: [
       {
         label: tooltipLabel, // make it dynamic
         data: empty,
-        backgroundColor: labels.map((e) => e.backgroundColor),
-        borderColor: labels.map((e) => e.borderColor),
+        backgroundColor: empty,
+        borderColor: empty,
       },
     ],
   });
@@ -40,12 +46,19 @@ const Polar: FC<IPolarProps> = ({
 
     const listener = async (/* event */) => {
       const v = await ds.getValue<Array<any>>();
+      const colorgenerated = generateColorPalette(
+        v.length,
+        ...colors.map((e) => e.color || randomColor()),
+      );
 
       setValue((prevValue) => ({
         ...prevValue,
+        labels: v.map((e) => e.label),
         datasets: prevValue.datasets.map((_set, index) => ({
           ...prevValue.datasets[index],
-          data: v,
+          data: v.map((e) => e.value),
+          backgroundColor: colorgenerated.map((e) => e + '50'),
+          borderColor: colorgenerated,
         })),
       }));
     };
@@ -89,10 +102,16 @@ const Polar: FC<IPolarProps> = ({
       scales: {
         r: {
           display: grid,
+          suggestedMin: min,
+          suggestedMax: max,
+          ticks: {
+            display: tick,
+            stepSize: step,
+          },
         },
       },
     }),
-    [legendPosition, style, name, grid, tooltip],
+    [legendPosition, style, name, grid, tooltip, min, max, tick, step],
   );
 
   return (

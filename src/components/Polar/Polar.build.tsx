@@ -4,6 +4,7 @@ import { FC, useMemo } from 'react';
 import { IPolarProps } from './Polar.config';
 import { Chart as ChartJS, RadialLinearScale, ArcElement, Tooltip, Legend } from 'chart.js';
 import { PolarArea } from 'react-chartjs-2';
+import { generateColorPalette, randomColor } from '../shared/colorUtils';
 
 ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
@@ -13,7 +14,11 @@ const Polar: FC<IPolarProps> = ({
   tooltip = true,
   tooltipLabel,
   grid = true,
-  labels = [],
+  min,
+  max,
+  step,
+  tick,
+  colors = [],
   style,
   className,
   classNames = [],
@@ -22,15 +27,22 @@ const Polar: FC<IPolarProps> = ({
     connectors: { connect },
   } = useEnhancedNode();
 
+  const labels = ['Value 1', 'Value 2', 'Value 3', 'Value 4', 'Value 5'];
+
+  const colorgenerated = useMemo(
+    () => generateColorPalette(labels.length, ...colors.map((e) => e.color || randomColor())),
+    [colors],
+  );
+
   const data = useMemo(
     () => ({
-      labels: labels.map((elm) => elm.label),
+      labels: labels,
       datasets: [
         {
           label: tooltipLabel,
-          data: labels.map(() => Math.random()),
-          backgroundColor: labels.map((e) => e.backgroundColor),
-          borderColor: labels.map((e) => e.borderColor),
+          data: [7, 10, 7, 5, 4],
+          backgroundColor: colorgenerated.map((e) => e + '50'),
+          borderColor: colorgenerated,
         },
       ],
     }),
@@ -67,10 +79,16 @@ const Polar: FC<IPolarProps> = ({
       scales: {
         r: {
           display: grid,
+          suggestedMin: min,
+          suggestedMax: max,
+          ticks: {
+            display: tick,
+            stepSize: step,
+          },
         },
       },
     }),
-    [legendPosition, style, name, grid, tooltip],
+    [legendPosition, style, name, grid, tooltip, min, max, step, tick],
   );
 
   return (

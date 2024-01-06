@@ -59,6 +59,7 @@ export default {
     name: 'Qodly chart summary',
     legendPosition: 'top',
     tooltip: true,
+    tick: true,
     tooltipLabel: 'Value',
     grid: true,
     style: {
@@ -74,13 +75,14 @@ export interface IPolarProps extends webforms.ComponentProps {
   tooltip?: boolean;
   tooltipLabel?: string;
   grid?: boolean;
-  labels?: IDataSet[];
+  colors?: IColor[];
+  min?: number;
+  max?: number;
+  step?: number;
+  tick: boolean;
 }
 
-export interface IDataSet {
+export interface IColor {
   label: string;
-  backgroundColor: string;
-  borderColor: string;
-  fill: boolean;
-  source: any;
+  color: string;
 }

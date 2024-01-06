@@ -43,6 +43,11 @@ const commonSettings: TSetting[] = [
     type: ESetting.CHECKBOX,
   },
   {
+    key: 'tick',
+    label: 'Display ticks',
+    type: ESetting.CHECKBOX,
+  },
+  {
     key: 'tooltipLabel',
     label: 'tooltipLabel',
     type: ESetting.TEXT_FIELD,
@@ -50,26 +55,31 @@ const commonSettings: TSetting[] = [
   },
   {
     type: ESetting.DATAGRID,
-    key: 'labels',
-    name: 'Data',
-    label: 'Data',
+    key: 'colors',
+    name: 'Colors',
+    label: 'Colors',
     data: [
       {
-        key: 'label',
-        label: 'Label',
-        type: ESetting.TEXT_FIELD,
-      },
-      {
-        key: 'backgroundColor',
-        label: 'Background Color',
-        type: ESetting.TEXT_FIELD,
-      },
-      {
-        key: 'borderColor',
-        label: 'Border Color',
+        key: 'color',
+        label: 'Color',
         type: ESetting.TEXT_FIELD,
       },
     ],
+  },
+  {
+    key: 'min',
+    label: 'Suggested Min',
+    type: ESetting.NUMBER_FIELD,
+  },
+  {
+    key: 'max',
+    label: 'Suggested Max',
+    type: ESetting.NUMBER_FIELD,
+  },
+  {
+    key: 'step',
+    label: 'Suggested Step',
+    type: ESetting.NUMBER_FIELD,
   },
 ];
 

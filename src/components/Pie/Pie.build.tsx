@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { FC, useMemo } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie as PieChart } from 'react-chartjs-2';
-import { generateColorPalette } from '../shared/colorUtils';
+import { generateColorPalette, randomColor } from '../shared/colorUtils';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -26,7 +26,7 @@ const Pie: FC<IPieProps> = ({
   const labels = ['Value 1', 'Value 2', 'Value 3', 'Value 4', 'Value 5'];
 
   const colorgenerated = useMemo(
-    () => generateColorPalette(labels.length, ...colors.map((e) => e.color || 'red')), // find a solution to replace red
+    () => generateColorPalette(labels.length, ...colors.map((e) => e.color || randomColor())),
     [colors],
   );
 
