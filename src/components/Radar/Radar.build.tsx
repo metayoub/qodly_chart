@@ -41,11 +41,11 @@ const Radar: FC<IRadarProps> = ({
         fill: set.fill,
         label: set.label,
         data: [2, 8, 3, 5, 10, 6],
-        borderColor: set.borderColor,
-        pointBackgroundColor: set.pointBackgroundColor,
-        pointBorderColor: set.pointBackgroundColor, // to change
+        borderColor: set.borderColor || set.backgroundColor,
+        pointBackgroundColor: set.pointBackgroundColor || set.backgroundColor || set.borderColor,
+        pointBorderColor: set.pointBackgroundColor || set.backgroundColor || set.borderColor, // to change
         pointStyle: set.pointStyle,
-        backgroundColor: set.backgroundColor,
+        backgroundColor: set.backgroundColor || set.borderColor,
         pointRadius: set.pointSize,
       })),
     }),
