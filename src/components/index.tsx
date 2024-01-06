@@ -1,4 +1,5 @@
 // imports
+import Bubble from './Bubble';
 import Bar from './Bar';
 import Radar from './Radar';
 import Polar from './Polar';
@@ -7,6 +8,7 @@ import Pie from './Pie';
 
 export default {
   // components
+  Bubble,
   Bar,
   Radar,
   Polar,
