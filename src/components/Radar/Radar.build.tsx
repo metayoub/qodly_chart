@@ -36,11 +36,11 @@ const Radar: FC<IRadarProps> = ({
 
   const data = useMemo(
     () => ({
-      labels: ['Thing 1', 'Thing 2', 'Thing 3', 'Thing 4', 'Thing 5', 'Thing 6'],
+      labels: ['Value 1', 'Value 2', 'Value 3', 'Value 4', 'Value 5'],
       datasets: datasets.map((set) => ({
         fill: set.fill,
         label: set.label,
-        data: [2, 8, 3, 5, 10, 6],
+        data: [8, 9, 7, 10, 9],
         borderColor: set.borderColor || set.backgroundColor,
         pointBackgroundColor: set.pointBackgroundColor || set.backgroundColor || set.borderColor,
         pointBorderColor: set.pointBackgroundColor || set.backgroundColor || set.borderColor, // to change

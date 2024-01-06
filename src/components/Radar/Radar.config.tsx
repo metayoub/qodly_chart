@@ -56,7 +56,7 @@ export default {
     },
   },
   defaultProps: {
-    label: 'Qodly',
+    label: 'Qodly chart summary',
     grid: true,
     tooltip: true,
     tick: true,

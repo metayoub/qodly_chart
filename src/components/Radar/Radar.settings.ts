@@ -15,7 +15,7 @@ const commonSettings: TSetting[] = [
     key: 'label',
     label: 'Label',
     type: ESetting.TEXT_FIELD,
-    defaultValue: 'Qodly Radar Chart',
+    defaultValue: 'Qodly chart summary',
   },
   {
     key: 'legendPosition',
