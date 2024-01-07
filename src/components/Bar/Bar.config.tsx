@@ -61,6 +61,7 @@ export default {
     tooltip: true,
     xAxis: true,
     yAxis: true,
+    stacked: false,
     legendPosition: 'top',
     orientation: 'x',
     style: {
@@ -76,6 +77,7 @@ export interface IBarProps extends webforms.ComponentProps {
   tooltip?: boolean;
   xAxis?: boolean;
   yAxis?: boolean;
+  stacked?: boolean;
   legendPosition?: 'top' | 'bottom' | 'left' | 'right' | 'center' | 'chartArea';
   orientation: 'x' | 'y';
   datasets?: IDataSet[];
@@ -85,5 +87,8 @@ export interface IDataSet {
   label: string;
   backgroundColor: string;
   borderColor: string;
+  borderRadius: number;
+  borderWidth: number;
+  borderSkipped: 'start' | 'end' | 'middle' | 'bottom' | 'left' | 'top' | 'right' | true | false;
   source: any;
 }

@@ -22,6 +22,7 @@ const Bar: FC<IBarProps> = ({
   tooltip = true,
   xAxis = true,
   yAxis = true,
+  stacked = false,
   datasets = [],
   orientation,
   style,
@@ -37,6 +38,9 @@ const Bar: FC<IBarProps> = ({
       data: empty,
       borderColor: set.borderColor || set.backgroundColor,
       backgroundColor: set.backgroundColor || set.borderColor,
+      borderSkipped: set.borderSkipped,
+      borderRadius: set.borderRadius,
+      borderWidth: set.borderWidth,
     })),
   });
   const {
@@ -54,6 +58,7 @@ const Bar: FC<IBarProps> = ({
         datasets: datasets.map((_set, index) => ({
           ...prevValue.datasets[index],
           data: v.map((e) => e[_set.source]),
+          // borderSkipped: false,
         })),
       }));
     };
@@ -72,11 +77,6 @@ const Bar: FC<IBarProps> = ({
     () => ({
       responsive: true,
       indexAxis: orientation,
-      elements: {
-        bar: {
-          borderWidth: 2,
-        },
-      },
       plugins: {
         legend: {
           display: (legendPosition as string) !== 'hidden',
@@ -106,6 +106,7 @@ const Bar: FC<IBarProps> = ({
       },
       scales: {
         x: {
+          stacked: stacked,
           display: xAxis,
           grid: {
             display: grid,
@@ -119,7 +120,7 @@ const Bar: FC<IBarProps> = ({
         },
       },
     }),
-    [legendPosition, style, grid, xAxis, yAxis, tooltip, name, orientation],
+    [legendPosition, style, grid, xAxis, yAxis, tooltip, name, orientation, stacked],
   );
 
   return (

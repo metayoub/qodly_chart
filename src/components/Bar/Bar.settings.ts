@@ -88,6 +88,35 @@ const commonSettings: TSetting[] = [
         label: 'Border Color',
         type: ESetting.TEXT_FIELD,
       },
+      {
+        key: 'borderWidth',
+        label: 'Border Width',
+        type: ESetting.NUMBER_FIELD,
+        defaultValue: 1,
+      },
+      {
+        key: 'borderRadius',
+        label: 'Border Radius',
+        type: ESetting.NUMBER_FIELD,
+        defaultValue: 0,
+      },
+      {
+        key: 'borderSkipped',
+        label: 'Border Skipped',
+        type: ESetting.TEXT_FIELD,
+        defaultValue: 'start',
+        /*options: [
+          { value: 'start', label: 'Start' },
+          { value: 'end', label: 'End' },
+          { value: 'middle', label: 'Middle' },
+          { value: 'bottom', label: 'Bottom' },
+          { value: 'left', label: 'Left' },
+          { value: 'top', label: 'Top' },
+          { value: 'right', label: 'Right' },
+          { value: false, label: "All" },
+          { value: true, label: 'None' },
+        ],*/
+      },
     ],
   },
   {
@@ -98,6 +127,11 @@ const commonSettings: TSetting[] = [
   {
     key: 'yAxis',
     label: 'Display y-Axis Value',
+    type: ESetting.CHECKBOX,
+  },
+  {
+    key: 'stacked',
+    label: 'Stacked Bar',
     type: ESetting.CHECKBOX,
   },
 ];
