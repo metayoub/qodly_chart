@@ -13,7 +13,7 @@ import {
   Filler,
   Legend,
 } from 'chart.js';
-
+import { randomColor } from '../shared/colorUtils';
 import { Line as LineChart } from 'react-chartjs-2';
 
 ChartJS.register(
@@ -42,21 +42,24 @@ const Line: FC<ILineProps> = ({
   const empty: any[] = [];
   const { connect } = useRenderer();
   const [value, setValue] = useState({
-    datasets: datasets.map((set) => ({
-      fill: set.fill,
-      label: set.label,
-      data: empty,
-      parsing: {
-        yAxisKey: set.source,
-      },
-      tension: set.tension,
-      borderColor: set.borderColor || set.backgroundColor,
-      pointBackgroundColor: set.pointBackgroundColor || set.backgroundColor,
-      pointBorderColor: set.pointBackgroundColor || set.borderColor || set.backgroundColor,
-      pointStyle: set.pointStyle,
-      backgroundColor: set.backgroundColor || set.borderColor,
-      pointRadius: set.pointSize,
-    })),
+    datasets: datasets.map((set) => {
+      const color = randomColor();
+      return {
+        fill: set.fill,
+        label: set.label,
+        data: empty,
+        parsing: {
+          yAxisKey: set.source,
+        },
+        tension: set.tension,
+        borderColor: set.borderColor || set.backgroundColor || color,
+        backgroundColor: set.backgroundColor || set.borderColor || color,
+        pointBackgroundColor: set.pointBackgroundColor || set.backgroundColor || color,
+        pointBorderColor: set.pointBackgroundColor || set.backgroundColor || color,
+        pointStyle: set.pointStyle,
+        pointRadius: set.pointSize,
+      };
+    }),
   });
   const {
     sources: { datasource: ds },
