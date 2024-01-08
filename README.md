@@ -37,7 +37,7 @@ A line chart is a way of plotting data points on a line. Often, it is used to sh
 |`Fill`	|Boolean	|No	|If set to `true`, the line chart, the line chart become Area chart.	|
 
 #### DataSource
-```json
+```
 [{x: "Value 1", y: 10}, {x: "Value 2", y: 25}, ...]
 
 [{x: "Value 1", y: 10, z: 20}, {x: "Value 2", y: 25, z: 40}, ...]
