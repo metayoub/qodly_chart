@@ -2,7 +2,7 @@ import { useRenderer, useSources } from '@ws-ui/webform-editor';
 import cn from 'classnames';
 import { FC, useEffect, useState, useMemo } from 'react';
 import { IBubbleProps } from './Bubble.config';
-
+import { randomColor } from '../shared/colorUtils';
 import { Chart as ChartJS, LinearScale, PointElement, Tooltip, Legend } from 'chart.js';
 import { Bubble as BubbleChart } from 'react-chartjs-2';
 
@@ -24,13 +24,16 @@ const Bubble: FC<IBubbleProps> = ({
   const empty: any[] = [];
 
   const [value, setValue] = useState({
-    datasets: datasets.map((set) => ({
-      label: set.label,
-      data: empty,
-      pointBackgroundColor: set.pointBackgroundColor || set.pointBackgroundColor,
-      pointBorderColor: set.pointBackgroundColor || set.pointBackgroundColor,
-      pointStyle: set.pointStyle,
-    })),
+    datasets: datasets.map((set) => {
+      const color = randomColor();
+      return {
+        label: set.label,
+        data: empty,
+        pointBackgroundColor: set.pointBackgroundColor || set.pointBackgroundColor || color,
+        pointBorderColor: set.pointBackgroundColor || set.pointBackgroundColor || color,
+        pointStyle: set.pointStyle,
+      };
+    }),
   });
   const {
     sources: { datasource: ds },

@@ -4,6 +4,7 @@ import { FC, useMemo } from 'react';
 import { IBubbleProps } from './Bubble.config';
 import { Chart as ChartJS, LinearScale, PointElement, Tooltip, Legend } from 'chart.js';
 import { Bubble as BubbleChart } from 'react-chartjs-2';
+import { randomColor } from '../shared/colorUtils';
 
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
 
@@ -74,17 +75,20 @@ const Bubble: FC<IBubbleProps> = ({
 
   const data = useMemo(
     () => ({
-      datasets: datasets.map((set) => ({
-        label: set.label,
-        data: Array.from({ length: 20 }, () => ({
-          x: Math.floor(Math.random() * 41) - 20,
-          y: Math.floor(Math.random() * 41) - 20,
-          r: Math.floor(Math.random() * 5) + 1,
-        })),
-        pointBackgroundColor: set.pointBackgroundColor || set.pointBorderColor,
-        pointBorderColor: set.pointBorderColor || set.pointBackgroundColor,
-        pointStyle: set.pointStyle,
-      })),
+      datasets: datasets.map((set) => {
+        const color = randomColor();
+        return {
+          label: set.label,
+          data: Array.from({ length: 20 }, () => ({
+            x: Math.floor(Math.random() * 41) - 20,
+            y: Math.floor(Math.random() * 41) - 20,
+            r: Math.floor(Math.random() * 5) + 1,
+          })),
+          pointBackgroundColor: set.pointBackgroundColor || set.pointBorderColor || color,
+          pointBorderColor: set.pointBorderColor || set.pointBackgroundColor || color,
+          pointStyle: set.pointStyle,
+        };
+      }),
     }),
     [datasets],
   );

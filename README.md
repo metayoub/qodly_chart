@@ -1,7 +1,14 @@
 # Overview
-Chart Component for Qodly studio
+Chart Component for Qodly studio using [ChartJS](https://www.chartjs.org/)
 
 ## Pie & Doughnut Chart
+
+Pie and doughnut charts are probably the most commonly used charts. They are divided into segments, the arc of each segment shows the proportional value of each piece of data.
+
+They are excellent at showing the relational proportions between data.
+
+Pie and doughnut charts are the same, but have one different default value - their cutout. This equates to what portion of the inner should be cut out. This defaults to 0 for pie charts, and `50` for doughnuts.
+
 ![image info](public/pie.png)
 
 |Name	|Type	|Description	|
@@ -35,7 +42,7 @@ Some example of data that can be used :
 ##  Line Chart
 A line chart is a way of plotting data points on a line. Often, it is used to show trend data, or the comparison of two data sets.
 
-![image info](public/line.png)
+![image info](public/line1.png)
 
 #### Properties
 
@@ -77,23 +84,42 @@ A line chart is a way of plotting data points on a line. Often, it is used to sh
 - `y, z, source1, source2 will be used in the source field to map data`
 
 ###  Area Chart
-Area Charts are base on line charts with fill = true and the you should set the background color.
+Area Charts are base on line charts with fill is set to `true` and the you should also set the background color.
 
-##  Polar Area Chart
-
-![image info](public/polar.png)
-
-##  Bar Chart
+![image info](public/line.png)
 
 ###  Scatter Chart
 Scatter charts are based on basic line charts with the x-axis changed to a linear axis. To use a scatter chart, the data's border color should be Transparent.
 
+![image info](public/scatter.png)
+
+###  Stepped Chart
+ Stepped Charts are line chart in which points are connected by horizontal and vertical line segments, looking like steps of a staircase. Step line charts are used when it is necessary to highlight the irregularity of changes.
+
+![image info](public/stepped.png)
+
+##  Polar Area Chart
+Polar area charts are similar to pie charts, but each segment has the same angle - the radius of the segment differs depending on the value.
+
+This type of chart is often useful when we want to show a comparison data similar to a pie chart, but also show a scale of values for context.
+![image info](public/polar.png)
+
+##  Bar Chart
+A bar chart provides a way of showing data values represented as vertical bars. It is sometimes used to show trend data, and the comparison of multiple data sets side by side
+
+![image info](public/pie.png)
+
 ### Dumbbell Chart
 
 ##  Bubble Chart
+A bubble chart is used to display three dimensions of data at the same time. The location of the bubble is determined by the first two dimensions and the corresponding horizontal and vertical axes. The third dimension is represented by the size of the individual bubbles.
 
-Soon ...
+![image info](public/bubble.png)
+
 ##  Radar Chart
+A radar chart is a way of showing multiple data points and the variation between them.
+
+They are often useful for comparing the points of two or more different data sets.
 
 ##  Mixed Chart 
 Soon ...
