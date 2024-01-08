@@ -31,7 +31,7 @@ const Line: FC<ILineProps> = ({
   name,
   datasets = [],
   legendPosition = 'top',
-  grid = false,
+  grid = true,
   tooltip = true,
   xAxis = true,
   yAxis = true,
@@ -63,6 +63,7 @@ const Line: FC<ILineProps> = ({
           pointBorderColor: set.pointBackgroundColor || set.backgroundColor || color,
           pointStyle: set.pointStyle,
           pointRadius: set.pointSize,
+          stepped: set.stepped,
         };
       }),
     }),

@@ -57,7 +57,7 @@ export default {
   },
   defaultProps: {
     name: 'Qodly chart summary',
-    grid: false,
+    grid: true,
     tooltip: true,
     xAxis: true,
     yAxis: true,
@@ -87,6 +87,7 @@ export interface IDataSet {
   pointSize: number;
   tension: number;
   fill: boolean;
+  stepped: boolean;
   source: any;
   pointStyle?: string;
 }

@@ -58,6 +58,7 @@ const Line: FC<ILineProps> = ({
         pointBorderColor: set.pointBackgroundColor || set.backgroundColor || color,
         pointStyle: set.pointStyle,
         pointRadius: set.pointSize,
+        stepped: set.stepped,
       };
     }),
   });

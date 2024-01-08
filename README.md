@@ -61,7 +61,8 @@ A line chart is a way of plotting data points on a line. Often, it is used to sh
 |`Point Styles`	|Color	|No	|Style of the point	and can be one of the following values: `circle`,`cross`,`crossRot`,`dash`,`line`,`rect`,`rectRounded`,`rectRot`,`star`,`triangle`, `none`|
 |`Point Size`	|String	|No	|The radius of the point shape. If set to 0, the point is not rendered. default value is `5`	|
 |`Tension`	|Number	|No	|Bezier curve tension of the line. Set to 0 to draw straightlines, default value is `0`. Example : `0.3`	|
-|`Fill`	|Boolean	|No	|If set to `true`, the line chart, the line chart become Area chart.	|
+|`Fill`	|Boolean	|No	|If set to `true`, the line chart become Area chart.	|
+|`Stepped`	|Boolean	|No	|If set to `true`, the line chart become a Stepped Line chart.	|
 
 #### DataSource
 ```
@@ -102,7 +103,6 @@ Soon ...
 ## TODO
 - Add Documentation
 - Add examples
-- Support Stepped Line 
 - Support mixed chart
 - Make Radar more dynamic
 - Support radialbar charts

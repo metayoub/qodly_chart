@@ -108,6 +108,12 @@ const commonSettings: TSetting[] = [
         label: 'Fill',
         type: ESetting.CHECKBOX,
       },
+      {
+        key: 'stepped',
+        label: 'Stepped',
+        type: ESetting.CHECKBOX,
+        defaultValue: false,
+      },
     ],
   },
   {
