@@ -2,8 +2,35 @@
 Chart Component for Qodly studio
 
 ## Pie & Doughnut Chart
-
 ![image info](public/pie.png)
+
+|Name	|Type	|Description	|
+|---	|---	|---	|
+|`DataSource`	|Array	|The dataSource that contains data to display.	|
+|`Title`	|String	|The Chart Title.	|
+|`Legend Position`	|String	|Defines the position of legend and can be one of the following values: `top`, `bottom`, `left`,`right`,`center`,`chartArea`,`hidden`, The default value is `top`, which means the legend will displayed on Tap of the chart.	|
+|`Cut Out`	|Number	| The portion of the chart that is cut out of the middle. It's considered to be pixels.	if it's > 0 the Pie Chart become Doughnut Chart.|
+|`Display tooltip`	|Boolean	|If set to `false` the tooltip won't appear	|
+|`Color`	|Array	|A set of colors that can be used in the pie chart   	|
+
+#### DataSource
+|Name	|Type	|Required	|Description	|
+|---	|---	|---	|---	|
+|`Label`	|String	|Yes	|The label for the dataset which appears in the legend and tooltips.	|
+|`Value`	|Number	|Yes	|The value for the dataset.	|
+|`Background Color`	|Color	|No	|The line fill color. If it's empty, a random color is generated	|
+|`Border Color`	|Color	|No	|The line color. if it's empty it will take background color instead.	|
+
+Some example of data that can be used :
+
+```
+[{"label: "Title", "value": 10}, ...]
+
+[{"label: "Title", "value": 10, "color": "#84a0d0"}, ...]
+
+[{"label: "Title", "value": 10, "color": "#84a0d0", "borderColor": "red"}, ...]
+
+```
 
 ##  Line Chart
 A line chart is a way of plotting data points on a line. Often, it is used to show trend data, or the comparison of two data sets.
@@ -15,7 +42,7 @@ A line chart is a way of plotting data points on a line. Often, it is used to sh
 |Name	|Type	|Description	|
 |---	|---	|---	|
 |`DataSource`	|Array	|The dataSource that contains data to display.	|
-|`Label`	|String	|The Chart Title.	|
+|`Title`	|String	|The Chart Title.	|
 |`Legend Position`	|String	|Defines the position of legend and can be one of the following values: `top`, `bottom`, `left`,`right`,`center`,`chartArea`,`hidden`, The default value is `top`, which means the legend will displayed on Tap of the chart.	|
 |`Display grid`	|Boolean	|If set to `false` the grid will disappear	|
 |`Display tooltip`	|Boolean	|If set to `false` the tooltip won't appear	|

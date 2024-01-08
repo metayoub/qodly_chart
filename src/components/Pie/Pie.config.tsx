@@ -57,7 +57,7 @@ export default {
   },
   defaultProps: {
     title: 'Qodly chart summary',
-    raduis: 0,
+    cutout: 0,
     tooltip: true,
     legendPosition: 'top',
     style: {
@@ -69,7 +69,7 @@ export default {
 
 export interface IPieProps extends webforms.ComponentProps {
   title?: string;
-  raduis?: number;
+  cutout?: number;
   colors?: IColors[];
   legendPosition?: 'top' | 'bottom' | 'left' | 'right' | 'center' | 'chartArea';
   tooltip?: boolean;

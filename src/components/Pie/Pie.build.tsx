@@ -13,7 +13,7 @@ const Pie: FC<IPieProps> = ({
   colors = [],
   legendPosition,
   title,
-  raduis,
+  cutout,
   tooltip,
   style,
   className,
@@ -47,7 +47,7 @@ const Pie: FC<IPieProps> = ({
   const options = useMemo(
     () => ({
       responsive: true,
-      cutout: raduis,
+      cutout: cutout,
       plugins: {
         legend: {
           display: (legendPosition as string) !== 'hidden',
@@ -76,7 +76,7 @@ const Pie: FC<IPieProps> = ({
         },
       },
     }),
-    [legendPosition, tooltip, style, title, raduis],
+    [legendPosition, tooltip, style, title, cutout],
   );
 
   return (

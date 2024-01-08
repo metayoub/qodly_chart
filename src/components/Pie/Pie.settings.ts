@@ -33,8 +33,8 @@ const commonSettings: TSetting[] = [
     ],
   },
   {
-    key: 'raduis',
-    label: 'Pie Raduis',
+    key: 'cutout',
+    label: 'Cut Out',
     type: ESetting.NUMBER_FIELD,
     defaultValue: 0,
   },
