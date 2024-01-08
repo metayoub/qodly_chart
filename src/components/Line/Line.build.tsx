@@ -13,7 +13,7 @@ import {
   Filler,
   Legend,
 } from 'chart.js';
-
+import { randomColor } from '../shared/colorUtils';
 import { Line as LineChart } from 'react-chartjs-2';
 
 ChartJS.register(
@@ -45,23 +45,26 @@ const Line: FC<ILineProps> = ({
 
   const data = useMemo(
     () => ({
-      datasets: datasets.map((set) => ({
-        fill: set.fill,
-        label: set.label,
-        data: [
-          { x: 'value 1', y: Math.random() * 10 },
-          { x: 'value 2', y: Math.random() * 10 },
-          { x: 'value 3', y: Math.random() * 10 },
-          { x: 'value 4', y: Math.random() * 10 },
-        ],
-        tension: set.tension,
-        borderColor: set.borderColor || set.backgroundColor,
-        pointBackgroundColor: set.pointBackgroundColor || set.backgroundColor,
-        pointBorderColor: set.pointBackgroundColor || set.borderColor || set.backgroundColor,
-        pointStyle: set.pointStyle,
-        backgroundColor: set.backgroundColor || set.borderColor,
-        pointRadius: set.pointSize,
-      })),
+      datasets: datasets.map((set) => {
+        const color = randomColor();
+        return {
+          fill: set.fill,
+          label: set.label,
+          data: [
+            { x: 'value 1', y: Math.random() * 10 },
+            { x: 'value 2', y: Math.random() * 10 },
+            { x: 'value 3', y: Math.random() * 10 },
+            { x: 'value 4', y: Math.random() * 10 },
+          ],
+          tension: set.tension,
+          borderColor: set.borderColor || set.backgroundColor || color,
+          backgroundColor: set.backgroundColor || set.borderColor || color,
+          pointBackgroundColor: set.pointBackgroundColor || set.backgroundColor || color,
+          pointBorderColor: set.pointBackgroundColor || set.backgroundColor || color,
+          pointStyle: set.pointStyle,
+          pointRadius: set.pointSize,
+        };
+      }),
     }),
     [datasets],
   );
