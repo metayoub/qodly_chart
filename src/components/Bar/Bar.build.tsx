@@ -12,7 +12,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar as BarChart } from 'react-chartjs-2';
-
+import { randomColor } from '../shared/colorUtils';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const Bar: FC<IBarProps> = ({
@@ -37,15 +37,18 @@ const Bar: FC<IBarProps> = ({
   const data = useMemo(
     () => ({
       labels: labels,
-      datasets: datasets.map((set) => ({
-        label: set.label,
-        data: labels.map(() => Math.random() * 10),
-        borderColor: set.borderColor || set.backgroundColor,
-        backgroundColor: set.backgroundColor || set.borderColor,
-        borderSkipped: set.borderSkipped,
-        borderRadius: set.borderRadius,
-        borderWidth: set.borderWidth,
-      })),
+      datasets: datasets.map((set) => {
+        const color = randomColor();
+        return {
+          label: set.label,
+          data: labels.map(() => Math.random() * 10),
+          borderColor: set.borderColor || set.backgroundColor,
+          backgroundColor: set.backgroundColor || set.borderColor || color,
+          borderSkipped: set.borderSkipped,
+          borderRadius: set.borderRadius,
+          borderWidth: set.borderWidth,
+        };
+      }),
     }),
     [datasets],
   );

@@ -102,6 +102,7 @@ Soon ...
 ## TODO
 - Add Documentation
 - Add examples
-- support mixed chart
-- make Radar more dynamic
-- support radialbar charts
+- Support Stepped Line 
+- Support mixed chart
+- Make Radar more dynamic
+- Support radialbar charts
