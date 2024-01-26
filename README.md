@@ -31,11 +31,11 @@ Pie and doughnut charts are the same, but have one different default value - the
 Some example of data that can be used :
 
 ```
-[{"label: "Title", "value": 10}, ...]
+[{"label": "Title", "value": 10}, ...]
 
-[{"label: "Title", "value": 10, "color": "#84a0d0"}, ...]
+[{"label": "Title", "value": 10, "color": "#84a0d0"}, ...]
 
-[{"label: "Title", "value": 10, "color": "#84a0d0", "borderColor": "red"}, ...]
+[{"label": "Title", "value": 10, "color": "#84a0d0", "borderColor": "red"}, ...]
 
 ```
 
@@ -73,11 +73,11 @@ A line chart is a way of plotting data points on a line. Often, it is used to sh
 
 #### DataSource
 ```
-[{x: "Value 1", y: 10}, {x: "Value 2", y: 25}, ...]
+[{"x": "Value 1", "y": 10}, {"x": "Value 2", "y": 25}, ...]
 
-[{x: "Value 1", y: 10, z: 20}, {x: "Value 2", y: 25, z: 40}, ...]
+[{"x": "Value 1", "y": 10, z: 20}, {"x": "Value 2", "y": 25, "z": 40}, ...]
 
-[{x: "Value 1", source1: 10, source2: 20, ...}, {x: "Value 2", source1: 25, source2: 40, ...}, ...]
+[{"x": "Value 1", source1: 10, source2: 20, ...}, {"x": "Value 2", source1: 25, source2: 40, ...}, ...]
 
 ```
 
