@@ -79,9 +79,9 @@ A line chart is a way of plotting data points on a line. Often, it is used to sh
 ```json
 [{"x": "Value 1", "y": 10}, {"x": "Value 2", "y": 25}, ...]
 
-[{"x": "Value 1", "y": 10, z: 20}, {"x": "Value 2", "y": 25, "z": 40}, ...]
+[{"x": "Value 1", "y": 10, "z": 20}, {"x": "Value 2", "y": 25, "z": 40}, ...]
 
-[{"x": "Value 1", source1: 10, source2: 20, ...}, {"x": "Value 2", source1: 25, source2: 40, ...}, ...]
+[{"x": "Value 1", "source1": 10, "source2": 20, ...}, {"x": "Value 2", "source1": 25, "source2": 40, ...}, ...]
 
 ```
 
@@ -150,9 +150,9 @@ A bar chart provides a way of showing data values represented as vertical bars. 
 ```json
 [{"x": "Value 1", "y": 10}, {"x": "Value 2", "y": 25}, ...]
 
-[{"x": "Value 1", "y": 10, z: 20}, {"x": "Value 2", "y": 25, "z": 40}, ...]
+[{"x": "Value 1", "y": 10, "z": 20}, {"x": "Value 2", "y": 25, "z": 40}, ...]
 
-[{"x": "Value 1", source1: 10, source2: 20, ...}, {"x": "Value 2", source1: 25, source2: 40, ...}, ...]
+[{"x": "Value 1", "source1": 10, "source2": 20, ...}, {"x": "Value 2", "source1": 25, "source2": 40, ...}, ...]
 
 ```
 
@@ -165,6 +165,42 @@ A bar chart provides a way of showing data values represented as vertical bars. 
 A bubble chart is used to display three dimensions of data at the same time. The location of the bubble is determined by the first two dimensions and the corresponding horizontal and vertical axes. The third dimension is represented by the size of the individual bubbles.
 
 ![image info](public/bubble.png)
+
+#### Properties
+
+| Name              | Type     | Description                                                                                                                                                                    |
+| ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `DataSource`      | Array    | The data source containing information to be displayed in the chart.                                                                                                           |
+| `Title`           | String   | The title of the chart.                                                                                                                                                        |
+| `Legend Position` | String   | Specifies the legend's position. Possible values: `top`, `bottom`, `left`, `right`, `center`, `chartArea`, `hidden`. Default is `top`. The legend appears on tap of the chart. |
+| `Display Grid`    | Boolean  | If set to `false`, the grid lines on the chart will disappear.                                                                                                                 |
+| `Display Tooltip` | Boolean  | If set to `false`, tooltips providing additional information won't appear.                                                                                                     |
+| `Data`            | DataType | Contains properties for configuring chart series.                                                                                                                              |
+| `Display X-Axis`  | Boolean  | If set to `false`, the x-axis will be hidden.                                                                                                                                  |
+| `Display Y-Axis`  | Boolean  | If set to `false`, the y-axis will be hidden.                                                                                                                                  |
+
+#### DataType
+
+| Name           | Type   | Required | Description                                                                                                                                        |
+| -------------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Label`        | String | No       | The label for the dataset, visible in the legend and tooltips.                                                                                     |
+| `Source`       | String | Yes      | The attribute name used to map data from the DataSource.                                                                                           |
+| `Color`        | Color  | No       | The fill color for points. If empty, a random color is generated.                                                                                  |
+| `Border Color` | Color  | No       | The color of the line. If empty, it takes the color.                                                                                               |
+| `Point Styles` | Color  | No       | Style of the points. Possible values: `circle`, `cross`, `crossRot`, `dash`, `line`, `rect`, `rectRounded`, `rectRot`, `star`, `triangle`, `none`. |
+
+#### DataSource
+
+```json
+[{"x": "Value 1", "y": 10}, {"x": "Value 2", "y": 25}, ...]
+
+[{"x": "Value 1", "y": 10, "z": 20}, {"x": "Value 2", "y": 25, "z": 40}, ...]
+
+[{"x": "Value 1", "source1": 10, "source2": 20, ...}, {"x": "Value 2", "source1": 25, "source2": 40, ...}, ...]
+
+```
+
+- `y, z, source1, source2 will be used in the source field to map data`
 
 ## Radar Chart
 
