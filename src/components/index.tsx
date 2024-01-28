@@ -1,4 +1,5 @@
 // imports
+import Mixed from './Mixed';
 import Bubble from './Bubble';
 import Bar from './Bar';
 import Radar from './Radar';
@@ -8,6 +9,7 @@ import Pie from './Pie';
 
 export default {
   // components
+  Mixed,
   Bubble,
   Bar,
   Radar,

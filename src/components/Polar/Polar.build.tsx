@@ -20,6 +20,7 @@ const Polar: FC<IPolarProps> = ({
   tick,
   colors = [],
   style,
+  centerPointLabels,
   className,
   classNames = [],
 }) => {
@@ -85,10 +86,19 @@ const Polar: FC<IPolarProps> = ({
             display: tick,
             stepSize: step,
           },
+          pointLabels: {
+            display: centerPointLabels,
+            centerPointLabels: centerPointLabels,
+            font: {
+              size: (style?.fontSize as number) || 14,
+              family: style?.fontFamily || 'inherit',
+              weight: style?.fontWeight as number,
+            },
+          },
         },
       },
     }),
-    [legendPosition, style, name, grid, tooltip, min, max, step, tick],
+    [legendPosition, style, name, grid, tooltip, min, max, step, tick, centerPointLabels],
   );
 
   return (
