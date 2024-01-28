@@ -116,7 +116,7 @@ This type of chart is often useful when we want to show a comparison data simila
 
 A bar chart provides a way of showing data values represented as vertical bars. It is sometimes used to show trend data, and the comparison of multiple data sets side by side
 
-![image info](public/pie.png)
+![image info](public/par.png)
 
 ### Dumbbell Chart
 
@@ -124,7 +124,7 @@ A bar chart provides a way of showing data values represented as vertical bars. 
 
 A bubble chart is used to display three dimensions of data at the same time. The location of the bubble is determined by the first two dimensions and the corresponding horizontal and vertical axes. The third dimension is represented by the size of the individual bubbles.
 
-![image info](public/bar.png)
+![image info](public/bubble.png)
 
 ## Radar Chart
 
