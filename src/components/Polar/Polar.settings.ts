@@ -13,7 +13,7 @@ import {
 const commonSettings: TSetting[] = [
   {
     key: 'name',
-    label: 'Name',
+    label: 'Title',
     type: ESetting.TEXT_FIELD,
     defaultValue: 'Qodly chart summary',
   },
@@ -49,7 +49,7 @@ const commonSettings: TSetting[] = [
   },
   {
     key: 'tooltipLabel',
-    label: 'tooltipLabel',
+    label: 'Tooltip Label',
     type: ESetting.TEXT_FIELD,
     defaultValue: 'Value',
   },

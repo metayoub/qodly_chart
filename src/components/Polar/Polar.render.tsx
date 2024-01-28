@@ -4,7 +4,7 @@ import { FC, useEffect, useState, useMemo } from 'react';
 import { IPolarProps } from './Polar.config';
 import { Chart as ChartJS, RadialLinearScale, ArcElement, Tooltip, Legend } from 'chart.js';
 import { PolarArea } from 'react-chartjs-2';
-import { generateColorPalette, randomColor } from '../shared/colorUtils';
+import { generateColorPalette, randomColor, colorToHex } from '../shared/colorUtils';
 
 ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
@@ -57,8 +57,12 @@ const Polar: FC<IPolarProps> = ({
         datasets: prevValue.datasets.map((_set, index) => ({
           ...prevValue.datasets[index],
           data: v.map((e) => e.value),
-          backgroundColor: colorgenerated.map((e) => e + '50'),
-          borderColor: colorgenerated,
+          backgroundColor: v.map(
+            (e, index) =>
+              (e.color && (e.borderColor ? e.color : colorToHex(e.color) + '50')) ||
+              colorgenerated[index] + '50',
+          ),
+          borderColor: v.map((e, index) => e.borderColor || e.color || colorgenerated[index]),
         })),
       }));
     };

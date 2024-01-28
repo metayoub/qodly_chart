@@ -23,12 +23,12 @@ Pie and doughnut charts are the same, but have one different default value - the
 
 #### DataSource
 
-| Name               | Type   | Required | Description                                                          |
-| ------------------ | ------ | -------- | -------------------------------------------------------------------- |
-| `Label`            | String | Yes      | The label for the dataset which appears in the legend and tooltips.  |
-| `Value`            | Number | Yes      | The value for the dataset.                                           |
-| `Background Color` | Color  | No       | The line fill color. If it's empty, a random color is generated      |
-| `Border Color`     | Color  | No       | The line color. if it's empty it will take background color instead. |
+| Name               | Attribut    | Type   | Required | Description                                                          |
+| ------------------ | ----------- | ------ | -------- | -------------------------------------------------------------------- |
+| `Label`            | label       | String | Yes      | The label for the dataset which appears in the legend and tooltips.  |
+| `Value`            | value       | Number | Yes      | The value for the dataset.                                           |
+| `Background Color` | color       | Color  | No       | The line fill color. If it's empty, a random color is generated      |
+| `Border Color`     | borderColor | Color  | No       | The line color. if it's empty it will take background color instead. |
 
 Some example of data that can be used :
 
@@ -111,6 +111,41 @@ Polar area charts are similar to pie charts, but each segment has the same angle
 
 This type of chart is often useful when we want to show a comparison data similar to a pie chart, but also show a scale of values for context.
 ![image info](public/polar.png)
+
+#### Properties
+
+| Name              | Type     | Description                                                                                                                                                                                                                         |
+| ----------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `DataSource`      | Array    | The dataSource that contains data to display.                                                                                                                                                                                       |
+| `Title`           | String   | The Chart Title.                                                                                                                                                                                                                    |
+| `Legend Position` | String   | Defines the position of the legend and can be one of the following values: `top`, `bottom`, `left`,`right`,`center`,`chartArea`,`hidden`. The default value is `top`, which means the legend will be displayed on tap of the chart. |
+| `Display Grid`    | Boolean  | If set to `false`, the grid will disappear.                                                                                                                                                                                         |
+| `Display Tooltip` | Boolean  | If set to `false`, the tooltip won't appear.                                                                                                                                                                                        |
+| `Display Ticks`   | Boolean  | If set to `false`, the ticks between grid lines will disappear.                                                                                                                                                                     |
+| `Tooltip Label`   | Boolean  | If set to `false`, the label in the tooltip won't appear.                                                                                                                                                                           |
+| `Colors`          | DataType | Contains the colors for the polar chart.                                                                                                                                                                                            |
+| `Suggested Min`   | Number   | The suggested minimum value for the axis.                                                                                                                                                                                           |
+| `Suggested Max`   | Number   | The suggested maximum value for the axis.                                                                                                                                                                                           |
+| `Suggested Step`  | Number   | The suggested step size between ticks on the axis.                                                                                                                                                                                  |
+
+#### DataSource
+
+| Name               | Attribut    | Type   | Required | Description                                                          |
+| ------------------ | ----------- | ------ | -------- | -------------------------------------------------------------------- |
+| `Label`            | label       | String | Yes      | The label for the dataset which appears in the legend and tooltips.  |
+| `Value`            | value       | Number | Yes      | The value for the dataset.                                           |
+| `Background Color` | color       | Color  | No       | The line fill color. If it's empty, a random color is generated      |
+| `Border Color`     | borderColor | Color  | No       | The line color. if it's empty it will take background color instead. |
+
+Some example of data that can be used :
+
+```Json
+[{"label": "Title", "value": 10}, ...]
+
+[{"label": "Title", "value": 10, "color": "#84a0d0"}, ...]
+
+[{"label": "Title", "value": 10, "color": "#84a0d0", "borderColor": "red"}, ...]
+```
 
 ## Bar Chart
 
