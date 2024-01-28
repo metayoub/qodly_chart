@@ -118,6 +118,46 @@ A bar chart provides a way of showing data values represented as vertical bars. 
 
 ![image info](public/bar.png)
 
+#### Properties
+
+| Name              | Type     | Description                                                                                                                                                                    |
+| ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `DataSource`      | Array    | The data source containing information to be displayed in the chart.                                                                                                           |
+| `Title`           | String   | The title of the chart.                                                                                                                                                        |
+| `Legend Position` | String   | Specifies the legend's position. Possible values: `top`, `bottom`, `left`, `right`, `center`, `chartArea`, `hidden`. Default is `top`. The legend appears on tap of the chart. |
+| `Orientation`     | String   | The orientation of the bar chart. Possible values: `Vertical` or `Horizontal`.                                                                                                 |
+| `Display Grid`    | Boolean  | If set to `false`, the grid lines on the chart will disappear.                                                                                                                 |
+| `Display Tooltip` | Boolean  | If set to `false`, tooltips providing additional information won't appear.                                                                                                     |
+| `Data`            | DataType | Contains properties for configuring chart series.                                                                                                                              |
+| `Display X-Axis`  | Boolean  | If set to `false`, the x-axis will be hidden.                                                                                                                                  |
+| `Display Y-Axis`  | Boolean  | If set to `false`, the y-axis will be hidden.                                                                                                                                  |
+| `Stacked Bar`     | Boolean  | If set to `true`, the bars will be stacked. If set to ` false`, bars will be displayed side by side. Applicable only for bar charts.                                           |
+
+#### DataType
+
+| Name               | Type   | Required | Description                                                                                                                                                           |
+| ------------------ | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Label`            | String | No       | The label for the dataset, visible in the legend and tooltips.                                                                                                        |
+| `Source`           | String | Yes      | The attribute name used to map data from the DataSource.                                                                                                              |
+| `Background Color` | Color  | No       | The fill color for the line. If empty, a random color is generated.                                                                                                   |
+| `Border Color`     | Color  | No       | The color of the line. If empty, it takes the background color.                                                                                                       |
+| `Border Width`     | Number | No       | The width of the line border. Default is `1`.                                                                                                                         |
+| `Border Radius`    | Number | No       | The radius of the line border corners. Default is `0`.                                                                                                                |
+| `Border Skipped`   | String | No       | Controls the rendering of line segments in the border. Possible values: 'Start', 'End', 'Middle', 'Bottom', 'Left', 'Top', 'Right', 'All', 'None'. Default is 'None'. |
+
+#### DataSource
+
+```json
+[{"x": "Value 1", "y": 10}, {"x": "Value 2", "y": 25}, ...]
+
+[{"x": "Value 1", "y": 10, z: 20}, {"x": "Value 2", "y": 25, "z": 40}, ...]
+
+[{"x": "Value 1", source1: 10, source2: 20, ...}, {"x": "Value 2", source1: 25, source2: 40, ...}, ...]
+
+```
+
+- `y, z, source1, source2 will be used in the source field to map data`
+
 ### Dumbbell Chart
 
 ## Bubble Chart
@@ -167,13 +207,13 @@ Some example of data that can be used :
 ```Json
 [{"label": "Title", "data": [10,6,2,2,4]}, ...]
 
-[{"label": "Title", "value": 10, "backgroundColor": "#84a0d0"}, ...]
+[{"label": "Title", "data": [10,6,2,2,4], "backgroundColor": "#84a0d0"}, ...]
 
-[{"label": "Title", "value": 10, "backgroundColor": "#84a0d0", "pointStyle": "star"}, ...]
+[{"label": "Title", "data": [10,6,2,2,4], "backgroundColor": "#84a0d0", "pointStyle": "star"}, ...]
 
-[{"label": "Title", "value": 10, "backgroundColor": "#84a0d0", "pointRadius": 7}, ...]
+[{"label": "Title", "data": [10,6,2,2,4], "backgroundColor": "#84a0d0", "pointRadius": 7}, ...]
 
-[{"label": "Title", "value": 10, "backgroundColor": "#84a0d0", "fill": true}, ...]
+[{"label": "Title", "data": [10,6,2,2,4], "backgroundColor": "#84a0d0", "fill": true}, ...]
 
 [{"label": "Title", "data": [10,6,2,2,4], "backgroundColor": "#84a0d033", "borderColor": "#84a0d0", "pointBackgroundColor": "#84a0d0", "pointBorderColor": "#84a0d0", "pointStyle": "circle", "pointRadius": 3, "fill": true }, ...]
 ```
