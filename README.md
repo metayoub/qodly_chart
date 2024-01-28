@@ -48,35 +48,35 @@ A line chart is a way of plotting data points on a line. Often, it is used to sh
 
 #### Properties
 
-| Name                   | Type     | Description                                                                                                                                                                                                                  |
-| ---------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `DataSource`           | Array    | The dataSource that contains data to display.                                                                                                                                                                                |
-| `Title`                | String   | The Chart Title.                                                                                                                                                                                                             |
-| `Legend Position`      | String   | Defines the position of legend and can be one of the following values: `top`, `bottom`, `left`,`right`,`center`,`chartArea`,`hidden`, The default value is `top`, which means the legend will displayed on Tap of the chart. |
-| `Display grid`         | Boolean  | If set to `false` the grid will disappear                                                                                                                                                                                    |
-| `Display tooltip`      | Boolean  | If set to `false` the tooltip won't appear                                                                                                                                                                                   |
-| `Data`                 | DataType | Contains the properties for chart series                                                                                                                                                                                     |
-| `Display x-Axis Value` | Boolean  | If set to `false` the x-Axis will disappear                                                                                                                                                                                  |
-| `Display x-Axis Value` | Boolean  | If set to `false` the y-Axis will disappear                                                                                                                                                                                  |
+| Name              | Type     | Description                                                                                                                                                                    |
+| ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `DataSource`      | Array    | The data source containing information to be displayed in the chart.                                                                                                           |
+| `Title`           | String   | The title of the chart.                                                                                                                                                        |
+| `Legend Position` | String   | Specifies the legend's position. Possible values: `top`, `bottom`, `left`, `right`, `center`, `chartArea`, `hidden`. Default is `top`. The legend appears on tap of the chart. |
+| `Display Grid`    | Boolean  | If set to `false`, the grid lines on the chart will disappear.                                                                                                                 |
+| `Display Tooltip` | Boolean  | If set to `false`, tooltips providing additional information won't appear.                                                                                                     |
+| `Data`            | DataType | Contains properties for configuring chart series.                                                                                                                              |
+| `Display X-Axis`  | Boolean  | If set to `false`, the x-axis will be hidden.                                                                                                                                  |
+| `Display Y-Axis`  | Boolean  | If set to `false`, the y-axis will be hidden.                                                                                                                                  |
 
 #### DataType
 
-| Name               | Type    | Required | Description                                                                                                                                                   |
-| ------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Label`            | String  | No       | The label for the dataset which appears in the legend and tooltips.                                                                                           |
-| `Source`           | String  | Yes      | The attribut name using for mapping data from the DataSource                                                                                                  |
-| `Background Color` | Color   | No       | The line fill color. If it's empty, a random color is generated                                                                                               |
-| `Border Color`     | Color   | No       | The line color. if it's empty it will take background color instead.                                                                                          |
-| `Point Color`      | Color   | No       | The fill color for points. if it's empty it will take background color instead.                                                                               |
-| `Point Styles`     | Color   | No       | Style of the point and can be one of the following values: `circle`,`cross`,`crossRot`,`dash`,`line`,`rect`,`rectRounded`,`rectRot`,`star`,`triangle`, `none` |
-| `Point Size`       | String  | No       | The radius of the point shape. If set to 0, the point is not rendered. default value is `5`                                                                   |
-| `Tension`          | Number  | No       | Bezier curve tension of the line. Set to 0 to draw straightlines, default value is `0`. Example : `0.3`                                                       |
-| `Fill`             | Boolean | No       | If set to `true`, the line chart become Area chart.                                                                                                           |
-| `Stepped`          | Boolean | No       | If set to `true`, the line chart become a Stepped Line chart.                                                                                                 |
+| Name               | Type    | Required | Description                                                                                                                                        |
+| ------------------ | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Label`            | String  | No       | The label for the dataset, visible in the legend and tooltips.                                                                                     |
+| `Source`           | String  | Yes      | The attribute name used to map data from the DataSource.                                                                                           |
+| `Background Color` | Color   | No       | The fill color for the line. If empty, a random color is generated.                                                                                |
+| `Border Color`     | Color   | No       | The color of the line. If empty, it takes the background color.                                                                                    |
+| `Point Color`      | Color   | No       | The fill color for points. If empty, it takes the background color.                                                                                |
+| `Point Styles`     | Color   | No       | Style of the points. Possible values: `circle`, `cross`, `crossRot`, `dash`, `line`, `rect`, `rectRounded`, `rectRot`, `star`, `triangle`, `none`. |
+| `Point Size`       | String  | No       | The radius of the point shape. If set to 0, the point is not rendered. Default is `5`.                                                             |
+| `Tension`          | Number  | No       | Bezier curve tension of the line. Set to 0 for straight lines. Default is `0`. Example: `0.3`.                                                     |
+| `Fill`             | Boolean | No       | If `true`, the line chart becomes an Area chart.                                                                                                   |
+| `Stepped`          | Boolean | No       | If `true`, the line chart becomes a Stepped Line chart.                                                                                            |
 
 #### DataSource
 
-```
+```json
 [{"x": "Value 1", "y": 10}, {"x": "Value 2", "y": 25}, ...]
 
 [{"x": "Value 1", "y": 10, z: 20}, {"x": "Value 2", "y": 25, "z": 40}, ...]
@@ -89,19 +89,19 @@ A line chart is a way of plotting data points on a line. Often, it is used to sh
 
 ### Area Chart
 
-Area Charts are base on line charts with fill is set to `true` and the you should also set the background color.
+Area Charts are based on line charts with `fill` set to `true`. Additionally, you should set the background color.
 
 ![image info](public/line.png)
 
 ### Scatter Chart
 
-Scatter charts are based on basic line charts with the x-axis changed to a linear axis. To use a scatter chart, the data's border color should be Transparent.
+Scatter charts are based on basic line charts with the x-axis changed to a linear axis. To use a scatter chart, set the data's border color to transparent.
 
 ![image info](public/scatter.png)
 
 ### Stepped Chart
 
-Stepped Charts are line chart in which points are connected by horizontal and vertical line segments, looking like steps of a staircase. Step line charts are used when it is necessary to highlight the irregularity of changes.
+Stepped Charts are line charts in which points are connected by horizontal and vertical line segments, resembling the steps of a staircase. Step line charts are used to emphasize the irregularity of changes.
 
 ![image info](public/stepped.png)
 
@@ -187,5 +187,4 @@ Soon ...
 - Add Documentation
 - Add examples
 - Support mixed chart
-- Make Radar more dynamic
 - Support radialbar charts
