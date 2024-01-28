@@ -193,8 +193,6 @@ A bar chart provides a way of showing data values represented as vertical bars. 
 
 - `y, z, source1, source2 will be used in the source field to map data`
 
-### Dumbbell Chart
-
 ## Bubble Chart
 
 A bubble chart is used to display three dimensions of data at the same time. The location of the bubble is determined by the first two dimensions and the corresponding horizontal and vertical axes. The third dimension is represented by the size of the individual bubbles.
@@ -295,7 +293,6 @@ Soon ...
 
 ## TODO
 
-- Add Documentation
-- Add examples
-- Support mixed chart
-- Support radialbar charts
+- Support Dumbbell Chart
+- Support Mixed chart
+- Support Radialbar charts
