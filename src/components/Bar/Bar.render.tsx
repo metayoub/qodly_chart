@@ -40,7 +40,9 @@ const Bar: FC<IBarProps> = ({
         data: empty,
         borderColor: set.borderColor || set.backgroundColor,
         backgroundColor: set.backgroundColor || set.borderColor || color,
-        borderSkipped: set.borderSkipped,
+        borderSkipped:
+          set.borderSkipped === 'false' ||
+          (set.borderSkipped as 'start' | 'end' | 'middle' | 'bottom' | 'left' | 'top' | 'right'),
         borderRadius: set.borderRadius,
         borderWidth: set.borderWidth,
       };

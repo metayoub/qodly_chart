@@ -114,7 +114,7 @@ A bar chart provides a way of showing data values represented as vertical bars. 
 ##  Bubble Chart
 A bubble chart is used to display three dimensions of data at the same time. The location of the bubble is determined by the first two dimensions and the corresponding horizontal and vertical axes. The third dimension is represented by the size of the individual bubbles.
 
-![image info](public/bubble.png)
+![image info](public/bar.png)
 
 ##  Radar Chart
 A radar chart is a way of showing multiple data points and the variation between them.

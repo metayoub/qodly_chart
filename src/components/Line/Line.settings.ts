@@ -61,23 +61,23 @@ const commonSettings: TSetting[] = [
       {
         key: 'backgroundColor',
         label: 'Background Color',
-        type: ESetting.TEXT_FIELD,
+        type: ESetting.COLOR_PICKER,
       },
       {
         key: 'borderColor',
         label: 'Border Color',
-        type: ESetting.TEXT_FIELD,
+        type: ESetting.COLOR_PICKER,
       },
       {
         key: 'pointBackgroundColor',
         label: 'Point Color',
-        type: ESetting.TEXT_FIELD,
+        type: ESetting.COLOR_PICKER,
       },
       {
         key: 'pointStyle',
         label: 'Point Styles',
-        type: ESetting.TEXT_FIELD,
-        /*options: [
+        type: ESetting.SELECT,
+        options: [
           { value: 'circle', label: 'Circle' },
           { value: 'cross', label: 'Cross' },
           { value: 'crossRot', label: 'CrossRot' },
@@ -89,7 +89,7 @@ const commonSettings: TSetting[] = [
           { value: 'star', label: 'Star' },
           { value: 'triangle', label: 'Triangle' },
           { value: '', label: 'none' },
-        ],*/
+        ],
       },
       {
         key: 'pointSize',

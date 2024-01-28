@@ -62,7 +62,7 @@ const commonSettings: TSetting[] = [
       {
         key: 'color',
         label: 'Color',
-        type: ESetting.TEXT_FIELD,
+        type: ESetting.COLOR_PICKER,
       },
     ],
   },

@@ -89,6 +89,15 @@ export interface IDataSet {
   borderColor: string;
   borderRadius: number;
   borderWidth: number;
-  borderSkipped: 'start' | 'end' | 'middle' | 'bottom' | 'left' | 'top' | 'right' | true | false;
+  borderSkipped:
+    | 'start'
+    | 'end'
+    | 'middle'
+    | 'bottom'
+    | 'left'
+    | 'top'
+    | 'right'
+    | 'true'
+    | 'false';
   source: any;
 }

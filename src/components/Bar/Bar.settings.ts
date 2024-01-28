@@ -81,12 +81,12 @@ const commonSettings: TSetting[] = [
       {
         key: 'backgroundColor',
         label: 'Background Color',
-        type: ESetting.TEXT_FIELD,
+        type: ESetting.COLOR_PICKER,
       },
       {
         key: 'borderColor',
         label: 'Border Color',
-        type: ESetting.TEXT_FIELD,
+        type: ESetting.COLOR_PICKER,
       },
       {
         key: 'borderWidth',
@@ -103,9 +103,9 @@ const commonSettings: TSetting[] = [
       {
         key: 'borderSkipped',
         label: 'Border Skipped',
-        type: ESetting.TEXT_FIELD,
+        type: ESetting.SELECT,
         defaultValue: 'start',
-        /*options: [
+        options: [
           { value: 'start', label: 'Start' },
           { value: 'end', label: 'End' },
           { value: 'middle', label: 'Middle' },
@@ -113,9 +113,9 @@ const commonSettings: TSetting[] = [
           { value: 'left', label: 'Left' },
           { value: 'top', label: 'Top' },
           { value: 'right', label: 'Right' },
-          { value: false, label: "All" },
-          { value: true, label: 'None' },
-        ],*/
+          { value: 'false', label: 'All' },
+          { value: 'true', label: 'None' },
+        ],
       },
     ],
   },
