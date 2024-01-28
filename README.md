@@ -116,7 +116,7 @@ This type of chart is often useful when we want to show a comparison data simila
 
 A bar chart provides a way of showing data values represented as vertical bars. It is sometimes used to show trend data, and the comparison of multiple data sets side by side
 
-![image info](public/par.png)
+![image info](public/bar.png)
 
 ### Dumbbell Chart
 
