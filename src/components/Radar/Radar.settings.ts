@@ -12,8 +12,8 @@ import {
 
 const commonSettings: TSetting[] = [
   {
-    key: 'label',
-    label: 'Label',
+    key: 'title',
+    label: 'Title',
     type: ESetting.TEXT_FIELD,
     defaultValue: 'Qodly chart summary',
   },
@@ -49,63 +49,14 @@ const commonSettings: TSetting[] = [
   },
   {
     type: ESetting.DATAGRID,
-    key: 'datasets',
-    name: 'Data',
-    label: 'Data',
+    key: 'labels',
+    name: 'Labels',
+    label: 'Labels',
     data: [
       {
         key: 'label',
         label: 'Label',
         type: ESetting.TEXT_FIELD,
-      },
-      {
-        key: 'source',
-        label: 'Source',
-        type: ESetting.TEXT_FIELD,
-      },
-      {
-        key: 'backgroundColor',
-        label: 'Background Color',
-        type: ESetting.COLOR_PICKER,
-      },
-      {
-        key: 'borderColor',
-        label: 'Border Color',
-        type: ESetting.COLOR_PICKER,
-      },
-      {
-        key: 'pointBackgroundColor',
-        label: 'Point Color',
-        type: ESetting.COLOR_PICKER,
-      },
-      {
-        key: 'pointStyle',
-        label: 'Point Styles',
-        type: ESetting.SELECT,
-        options: [
-          { value: 'circle', label: 'Circle' },
-          { value: 'cross', label: 'Cross' },
-          { value: 'crossRot', label: 'CrossRot' },
-          { value: 'dash', label: 'Dash' },
-          { value: 'line', label: 'Line' },
-          { value: 'rect', label: 'Rect' },
-          { value: 'rectRounded', label: 'RectRounded' },
-          { value: 'rectRot', label: 'RectRot' },
-          { value: 'star', label: 'Star' },
-          { value: 'triangle', label: 'Triangle' },
-          { value: '', label: 'none' },
-        ],
-      },
-      {
-        key: 'pointSize',
-        label: 'Point Size',
-        type: ESetting.NUMBER_FIELD,
-        defaultValue: 10,
-      },
-      {
-        key: 'fill',
-        label: 'Fill',
-        type: ESetting.CHECKBOX,
       },
     ],
   },

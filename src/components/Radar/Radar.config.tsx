@@ -69,8 +69,8 @@ export default {
 } as T4DComponentConfig<IRadarProps>;
 
 export interface IRadarProps extends webforms.ComponentProps {
-  datasets?: IDataSet[];
-  label?: string;
+  labels?: IDataSet[];
+  title?: string;
   tick?: boolean;
   grid?: boolean;
   min?: number;
@@ -82,11 +82,4 @@ export interface IRadarProps extends webforms.ComponentProps {
 
 export interface IDataSet {
   label: string;
-  backgroundColor: string;
-  borderColor: string;
-  pointBackgroundColor: string;
-  pointSize: number;
-  fill: boolean;
-  source: any;
-  pointStyle?: string;
 }

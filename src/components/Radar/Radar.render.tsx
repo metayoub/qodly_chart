@@ -2,7 +2,7 @@ import { useRenderer, useSources } from '@ws-ui/webform-editor';
 import cn from 'classnames';
 import { FC, useEffect, useState, useMemo } from 'react';
 import { IRadarProps } from './Radar.config';
-
+import { generateColorPalette, randomColor } from '../shared/colorUtils';
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -17,8 +17,8 @@ import { Radar as RadarChart } from 'react-chartjs-2';
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
 const Radar: FC<IRadarProps> = ({
-  label,
-  datasets = [],
+  title,
+  labels = [],
   legendPosition,
   grid,
   tooltip,
@@ -33,18 +33,8 @@ const Radar: FC<IRadarProps> = ({
   const empty: any[] = [];
   const { connect } = useRenderer();
   const [value, setValue] = useState({
-    labels: empty,
-    datasets: datasets.map((set) => ({
-      fill: set.fill,
-      label: set.label,
-      data: empty,
-      borderColor: set.borderColor || set.backgroundColor,
-      pointBackgroundColor: set.pointBackgroundColor || set.backgroundColor || set.borderColor,
-      pointBorderColor: set.pointBackgroundColor || set.backgroundColor || set.borderColor, // to change
-      pointStyle: set.pointStyle,
-      backgroundColor: set.backgroundColor || set.borderColor,
-      pointRadius: set.pointSize,
-    })),
+    labels: labels.map((e) => e.label),
+    datasets: empty,
   });
   const {
     sources: { datasource: ds },
@@ -55,12 +45,23 @@ const Radar: FC<IRadarProps> = ({
 
     const listener = async (/* event */) => {
       const v = await ds.getValue<Array<any>>();
+      const colorgenerated = generateColorPalette(
+        v.length,
+        ...v.map((e) => e.backgroundColor || e.borderColor || randomColor()),
+      );
       setValue((prevValue) => ({
         ...prevValue,
-        labels: v.map((e) => e.label),
-        datasets: datasets.map((_set, index) => ({
-          ...prevValue.datasets[index],
-          data: v.map((e) => e[_set.source]),
+        datasets: v.map((set, index) => ({
+          label: set.label,
+          data: set.data,
+          backgroundColor: set.backgroundColor || colorgenerated[index] + '50', // genertae random color
+          borderColor: set.borderColor || set.backgroundColor || colorgenerated[index],
+          pointBackgroundColor: set.borderColor || set.backgroundColor || colorgenerated[index],
+          pointBorderColor:
+            set.pointBorderColor || set.borderColor || set.backgroundColor || colorgenerated[index],
+          pointStyle: set.pointStyle || 'circle',
+          fill: set.fill || false,
+          pointRadius: set.pointSize || 5,
         })),
       }));
     };
@@ -92,8 +93,8 @@ const Radar: FC<IRadarProps> = ({
           },
         },
         title: {
-          display: label !== '',
-          text: label,
+          display: title !== '',
+          text: title,
           color: style?.color,
           font: {
             size: (style?.fontSize as number) || 14,
@@ -119,7 +120,7 @@ const Radar: FC<IRadarProps> = ({
         },
       },
     }),
-    [legendPosition, style, grid, tooltip, tick, label, min, max, step],
+    [legendPosition, style, grid, tooltip, tick, title, min, max, step],
   );
 
   return (

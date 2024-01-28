@@ -2,7 +2,7 @@ import { useEnhancedNode } from '@ws-ui/webform-editor';
 import cn from 'classnames';
 import { FC, useMemo } from 'react';
 import { IRadarProps } from './Radar.config';
-
+import { randomColor } from '../shared/colorUtils';
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -17,8 +17,8 @@ import { Radar as RadarChart } from 'react-chartjs-2';
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
 const Radar: FC<IRadarProps> = ({
-  label,
-  datasets = [],
+  title,
+  labels = [],
   legendPosition,
   grid,
   tooltip,
@@ -34,22 +34,25 @@ const Radar: FC<IRadarProps> = ({
     connectors: { connect },
   } = useEnhancedNode();
 
+  const random = randomColor();
+
   const data = useMemo(
     () => ({
-      labels: ['Value 1', 'Value 2', 'Value 3', 'Value 4', 'Value 5'],
-      datasets: datasets.map((set) => ({
-        fill: set.fill,
-        label: set.label,
-        data: [8, 9, 7, 10, 9],
-        borderColor: set.borderColor || set.backgroundColor,
-        pointBackgroundColor: set.pointBackgroundColor || set.backgroundColor || set.borderColor,
-        pointBorderColor: set.pointBackgroundColor || set.backgroundColor || set.borderColor, // to change
-        pointStyle: set.pointStyle,
-        backgroundColor: set.backgroundColor || set.borderColor,
-        pointRadius: set.pointSize,
-      })),
+      labels: labels.map((e) => e.label),
+      datasets: [
+        {
+          fill: true,
+          label: 'Dataset 1',
+          data: labels.map((_e, index) => index + 1 * 2),
+          borderColor: random,
+          pointBackgroundColor: random,
+          pointBorderColor: random,
+          backgroundColor: random + '50',
+          pointStyle: 'rectRounded',
+        },
+      ],
     }),
-    [label, datasets],
+    [labels],
   );
 
   const options = useMemo(
@@ -69,8 +72,8 @@ const Radar: FC<IRadarProps> = ({
           },
         },
         title: {
-          display: label !== '',
-          text: label,
+          display: title !== '',
+          text: title,
           color: style?.color,
           font: {
             size: (style?.fontSize as number) || 14,
@@ -96,7 +99,7 @@ const Radar: FC<IRadarProps> = ({
         },
       },
     }),
-    [legendPosition, style, grid, tooltip, tick, label, min, max, step],
+    [legendPosition, style, grid, tooltip, tick, title, min, max, step],
   );
 
   return (
