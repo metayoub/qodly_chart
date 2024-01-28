@@ -33,16 +33,6 @@ const commonSettings: TSetting[] = [
     ],
   },
   {
-    key: 'grid',
-    label: 'Display grid',
-    type: ESetting.CHECKBOX,
-  },
-  {
-    key: 'tooltip',
-    label: 'Display tooltip',
-    type: ESetting.CHECKBOX,
-  },
-  {
     type: ESetting.DATAGRID,
     key: 'dataSets',
     name: 'Charts',
@@ -57,15 +47,16 @@ const commonSettings: TSetting[] = [
         key: 'type',
         label: 'Type',
         type: ESetting.SELECT,
+        defaultValue: 'line',
         options: [
           { value: 'line', label: 'Line' },
           { value: 'bar', label: 'Bar' },
           { value: 'scatter', label: 'Scatter' },
-          /*{ value: 'bubble', label: 'Bubble' },
+          { value: 'bubble', label: 'Bubble' },
           { value: 'radar', label: 'Radar' },
-          { value: 'pie', label: 'Pie' },
+          // { value: 'pie', label: 'Pie' },
           { value: 'polarArea', label: 'Polar Area' },
-          { value: 'doughnut', label: 'Doughnut' },*/
+          // { value: 'doughnut', label: 'Doughnut' },
         ],
       },
       {
@@ -87,7 +78,13 @@ const commonSettings: TSetting[] = [
         key: 'borderWidth',
         label: 'Border Width',
         type: ESetting.NUMBER_FIELD,
-        defaultValue: 1,
+        defaultValue: 2,
+      },
+      {
+        key: 'tension',
+        label: 'Tension',
+        type: ESetting.NUMBER_FIELD,
+        defaultValue: 0.5,
       },
       {
         key: 'fill',

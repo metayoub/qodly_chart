@@ -289,7 +289,42 @@ Some example of data that can be used :
 
 ## Mixed Chart
 
-Soon ...
+A mixed chart combines different types of charts, such as bar charts, line charts, and scatter plots, within the same visualization. It enables users to represent diverse data sets and observe relationships between various data points in a single chart.
+
+![image info](public/mixed.png)
+
+#### Properties
+
+| Name                   | Type     | Description                                                                                                                                                                                                                         |
+| ---------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `DataSource`           | Array    | The dataSource that contains data to display.                                                                                                                                                                                       |
+| `Title`                | String   | The Chart Title.                                                                                                                                                                                                                    |
+| `Legend Position`      | String   | Defines the position of the legend and can be one of the following values: `top`, `bottom`, `left`,`right`,`center`,`chartArea`,`hidden`. The default value is `top`, which means the legend will be displayed on tap of the chart. |
+| `Charts`               | DataType | The chart to add.                                                                                                                                                                                                                   |
+| `Display Grid`         | Boolean  | If set to `false`, the grid will disappear.                                                                                                                                                                                         |
+| `Display Tooltip`      | Boolean  | If set to `false`, the tooltip won't appear.                                                                                                                                                                                        |
+| `Display x-Axis Value` | Boolean  | If set to `false`, the x-Axis values will be hidden.                                                                                                                                                                                |
+| `Display y-Axis Value` | Boolean  | If set to `false`, the y-Axis values will be hidden.                                                                                                                                                                                |
+| `Stacked Bar`          | Boolean  | If set to `true`, the charts will be stacked.                                                                                                                                                                                       |
+
+#### DataType
+
+| Name               | Type    | Required | Description                                                                                                             |
+| ------------------ | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `Label`            | String  | Yes      | The label for the dataset, visible in the legend and tooltips.                                                          |
+| `Type`             | String  | Yes      | The type of the dataset. Possible values: "Line", "Bar", "Scatter", "Bubble", "Radar", "Pie", "Polar Area", "Doughnut". |
+| `Source`           | String  | Yes      | The attribute name used to map data from the DataSource.                                                                |
+| `Background Color` | Color   | No       | The fill color for the line. If empty, a random color is generated.                                                     |
+| `Border Color`     | Color   | No       | The color of the line. If empty, it takes the background color.                                                         |
+| `Border Width`     | Number  | No       | The width of the line border. If set to 0, the border is not rendered. Default is `1`.                                  |
+| `Tension`          | Number  | No       | Bezier curve tension of the line. Set to 0 for straight lines. Default is `0`. Example: `0.3`.                          |
+| `Fill`             | Boolean | No       | If `true`, for example the line chart becomes an Area chart.                                                            |
+
+#### DataSource
+
+TODO
+
+Some example of data that can be used :
 
 ## TODO
 

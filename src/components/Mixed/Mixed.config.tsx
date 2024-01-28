@@ -79,10 +79,11 @@ export interface IMixedProps extends webforms.ComponentProps {
 
 export interface IDataSet {
   label?: string;
-  type: 'line' | 'bar' | 'radar' | 'pie' | 'doughnut';
+  type: 'line' | 'bar' | 'radar' | 'pie' | 'doughnut' | 'polarArea' | 'bubble' | 'scatter';
   source: string;
   backgroundColor?: string;
   borderColor?: string;
   borderWidth?: number;
+  tension?: number;
   fill?: boolean;
 }

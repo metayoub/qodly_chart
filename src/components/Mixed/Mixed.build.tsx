@@ -46,7 +46,7 @@ const Mixed: FC<IMixedProps> = ({
     connectors: { connect },
   } = useEnhancedNode();
 
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  const labels = ['January', 'February', 'March', 'April', 'May', 'June'];
 
   const data = useMemo(
     () => ({
@@ -62,7 +62,7 @@ const Mixed: FC<IMixedProps> = ({
           backgroundColor: set.backgroundColor || color + '50',
           borderWidth: set.borderWidth,
           order: index,
-          // tension: 0.5, // dynamic
+          tension: set.tension,
         };
       }),
     }),
