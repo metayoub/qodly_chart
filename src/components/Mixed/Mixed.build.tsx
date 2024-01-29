@@ -67,6 +67,7 @@ const Mixed: FC<IMixedProps> = ({
           borderWidth: set.borderWidth || 1,
           order: index,
           tension: set.tension || 0,
+          stepped: set.stepped || false,
         };
       }),
     }),

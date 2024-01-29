@@ -58,6 +58,7 @@ const Mixed: FC<IMixedProps> = ({
         borderWidth: set.borderWidth || 1,
         order: index,
         tension: set.tension || 0,
+        stepped: set.stepped || false,
       };
     }),
   });
@@ -82,6 +83,7 @@ const Mixed: FC<IMixedProps> = ({
           fill: v[index]?.fill || _set.fill,
           borderWidth: v[index]?.borderWidth || _set.borderWidth,
           tension: v[index]?.tension || _set.tension,
+          stepped: v[index]?.stepped || _set.stepped,
         })),
       }));
     };

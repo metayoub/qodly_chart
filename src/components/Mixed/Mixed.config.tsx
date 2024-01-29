@@ -85,4 +85,5 @@ export interface IDataSet {
   borderWidth?: number;
   tension?: number;
   fill?: boolean;
+  stepped?: boolean;
 }
