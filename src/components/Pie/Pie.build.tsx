@@ -48,6 +48,9 @@ const Pie: FC<IPieProps> = ({
     () => ({
       responsive: true,
       cutout: cutout,
+      // rotation: 270, // make it dynamic
+      //radius: '50%', // we will see about it
+      // circumference: 180, // make it dynamic
       plugins: {
         legend: {
           display: (legendPosition as string) !== 'hidden',

@@ -81,6 +81,11 @@ const commonSettings: TSetting[] = [
     label: 'Suggested Step',
     type: ESetting.NUMBER_FIELD,
   },
+  {
+    key: 'centerPointLabels',
+    label: 'Center Point Labels',
+    type: ESetting.CHECKBOX,
+  },
 ];
 
 const Settings: TSetting[] = [

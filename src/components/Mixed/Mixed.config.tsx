@@ -1,12 +1,12 @@
 import { EComponentKind, T4DComponentConfig } from '@ws-ui/webform-editor';
 import { Settings } from '@ws-ui/webform-editor';
-import { PiChartPolar } from 'react-icons/pi';
+import { MdOutlineAreaChart } from 'react-icons/md';
 
-import PolarSettings, { BasicSettings } from './Polar.settings';
+import MixedSettings, { BasicSettings } from './Mixed.settings';
 
 export default {
   craft: {
-    displayName: 'Polar',
+    displayName: 'Mixed Chart',
     kind: EComponentKind.BASIC,
     props: {
       name: '',
@@ -14,13 +14,13 @@ export default {
       events: [],
     },
     related: {
-      settings: Settings(PolarSettings, BasicSettings),
+      settings: Settings(MixedSettings, BasicSettings),
     },
   },
   info: {
-    displayName: 'Polar',
+    displayName: 'Mixed Chart',
     exposed: true,
-    icon: PiChartPolar,
+    icon: MdOutlineAreaChart,
     events: [
       {
         label: 'On Click',
@@ -56,35 +56,33 @@ export default {
     },
   },
   defaultProps: {
-    name: 'Qodly chart summary',
+    title: 'Qodly chart summary',
     legendPosition: 'top',
-    tooltip: true,
-    tick: true,
-    tooltipLabel: 'Value',
     grid: true,
-    centerPointLabels: false,
-    style: {
-      height: '300px',
-      width: '300px',
-    },
+    tooltip: true,
+    xAxis: true,
+    yAxis: true,
+    stacked: false,
   },
-} as T4DComponentConfig<IPolarProps>;
+} as T4DComponentConfig<IMixedProps>;
 
-export interface IPolarProps extends webforms.ComponentProps {
-  name?: string;
+export interface IMixedProps extends webforms.ComponentProps {
+  title?: string;
   legendPosition?: 'top' | 'bottom' | 'left' | 'right' | 'center' | 'chartArea';
-  tooltip?: boolean;
-  tooltipLabel?: string;
   grid?: boolean;
-  colors?: IColor[];
-  min?: number;
-  max?: number;
-  step?: number;
-  tick?: boolean;
-  centerPointLabels?: boolean;
+  tooltip?: boolean;
+  xAxis?: boolean;
+  yAxis?: boolean;
+  stacked?: boolean;
+  dataSets?: IDataSet[];
 }
 
-export interface IColor {
-  label: string;
-  color: string;
+export interface IDataSet {
+  label?: string;
+  type: 'line' | 'bar' | 'radar' | 'pie' | 'doughnut' | 'polarArea' | 'bubble' | 'scatter';
+  backgroundColor?: string;
+  borderColor?: string;
+  borderWidth?: number;
+  tension?: number;
+  fill?: boolean;
 }
