@@ -58,7 +58,7 @@ export default {
   defaultProps: {
     title: 'Qodly chart summary',
     legendPosition: 'top',
-    grid: false,
+    grid: true,
     tooltip: true,
     xAxis: true,
     yAxis: true,
@@ -80,7 +80,6 @@ export interface IMixedProps extends webforms.ComponentProps {
 export interface IDataSet {
   label?: string;
   type: 'line' | 'bar' | 'radar' | 'pie' | 'doughnut' | 'polarArea' | 'bubble' | 'scatter';
-  source: string;
   backgroundColor?: string;
   borderColor?: string;
   borderWidth?: number;

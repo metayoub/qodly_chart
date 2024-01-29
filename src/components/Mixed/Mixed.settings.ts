@@ -60,11 +60,6 @@ const commonSettings: TSetting[] = [
         ],
       },
       {
-        key: 'source',
-        label: 'Source',
-        type: ESetting.TEXT_FIELD,
-      },
-      {
         key: 'backgroundColor',
         label: 'Background Color',
         type: ESetting.COLOR_PICKER,

@@ -311,9 +311,8 @@ A mixed chart combines different types of charts, such as bar charts, line chart
 
 | Name               | Type    | Required | Description                                                                                                             |
 | ------------------ | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `Label`            | String  | Yes      | The label for the dataset, visible in the legend and tooltips.                                                          |
+| `Label`            | String  | No       | The label for the dataset, visible in the legend and tooltips.                                                          |
 | `Type`             | String  | Yes      | The type of the dataset. Possible values: "Line", "Bar", "Scatter", "Bubble", "Radar", "Pie", "Polar Area", "Doughnut". |
-| `Source`           | String  | Yes      | The attribute name used to map data from the DataSource.                                                                |
 | `Background Color` | Color   | No       | The fill color for the line. If empty, a random color is generated.                                                     |
 | `Border Color`     | Color   | No       | The color of the line. If empty, it takes the background color.                                                         |
 | `Border Width`     | Number  | No       | The width of the line border. If set to 0, the border is not rendered. Default is `1`.                                  |
