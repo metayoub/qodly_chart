@@ -321,9 +321,27 @@ A mixed chart combines different types of charts, such as bar charts, line chart
 
 #### DataSource
 
-TODO
-
 Some example of data that can be used :
+
+```json
+
+    [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}]}, ...]
+
+    [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "label": "chart 1"}, ...]
+
+    [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "fill": true }...]
+
+    [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "tension": 0.3 }...]
+
+    [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "backgroundColor": "" }...]
+
+    [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "borderColor": "true" }...]
+
+    [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "borderWidth": 5 }...]
+
+    [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "label": "chart 1", "fill": true, "borderWidth": 5, "tension": 0.3, "backgroundColor": "red", "borderColor": "#45FF3A" }...]
+
+```
 
 ## TODO
 

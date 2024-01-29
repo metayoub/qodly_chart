@@ -76,6 +76,12 @@ const Mixed: FC<IMixedProps> = ({
         datasets: dataSets.map((_set, index) => ({
           ...prevValue.datasets[index],
           data: v[index]?.data,
+          label: v[index]?.label || _set.label,
+          // backgroundColor: v[index]?.backgroundColor && _set.backgroundColor,
+          // borderColor: v[index]?.borderColor && _set.borderColor,
+          fill: v[index]?.fill || _set.fill,
+          borderWidth: v[index]?.borderWidth || _set.borderWidth,
+          tension: v[index]?.tension || _set.tension,
         })),
       }));
     };

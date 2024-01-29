@@ -46,17 +46,21 @@ const Mixed: FC<IMixedProps> = ({
     connectors: { connect },
   } = useEnhancedNode();
 
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June'];
-
   const data = useMemo(
     () => ({
-      labels,
       datasets: dataSets.map((set, index) => {
         const color = randomColor();
         return {
           type: set.type,
           label: set.label,
-          data: labels.map((_e) => Math.random() * 10),
+          data: [
+            { x: 'January', y: Math.random() * 10 },
+            { x: 'February', y: Math.random() * 10 },
+            { x: 'March', y: Math.random() * 10 },
+            { x: 'April', y: Math.random() * 10 },
+            { x: 'May', y: Math.random() * 10 },
+            { x: 'June', y: Math.random() * 10 },
+          ],
           fill: set.fill || false,
           borderColor: set.borderColor || color,
           backgroundColor: set.backgroundColor || color + '50',
@@ -68,7 +72,6 @@ const Mixed: FC<IMixedProps> = ({
     }),
     [dataSets],
   );
-
   const options = useMemo(
     () => ({
       responsive: true,
@@ -102,13 +105,13 @@ const Mixed: FC<IMixedProps> = ({
       },
       scales: {
         x: {
-          stacked: stacked,
           display: xAxis,
           grid: {
             display: grid,
           },
         },
         y: {
+          stacked: stacked,
           grid: {
             display: grid,
           },
