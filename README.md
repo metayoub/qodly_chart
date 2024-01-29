@@ -327,6 +327,8 @@ Some example of data that can be used :
 
     [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}]}, ...]
 
+    [{"data": [10, 6, 2, 2, 4, 10]}, ...]
+
     [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "label": "chart 1"}, ...]
 
     [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "fill": true }...]

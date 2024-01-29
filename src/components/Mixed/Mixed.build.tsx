@@ -105,13 +105,13 @@ const Mixed: FC<IMixedProps> = ({
       },
       scales: {
         x: {
+          stacked: stacked,
           display: xAxis,
           grid: {
             display: grid,
           },
         },
         y: {
-          stacked: stacked,
           grid: {
             display: grid,
           },
