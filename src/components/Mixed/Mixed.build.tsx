@@ -63,7 +63,7 @@ const Mixed: FC<IMixedProps> = ({
           ],
           fill: set.fill || false,
           borderColor: set.borderColor || color,
-          backgroundColor: set.backgroundColor || color + '50',
+          backgroundColor: set.backgroundColor || set.borderColor || color + '50',
           borderWidth: set.borderWidth || 1,
           order: index,
           tension: set.tension || 0,
