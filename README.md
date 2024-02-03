@@ -318,6 +318,7 @@ A mixed chart combines different types of charts, such as bar charts, line chart
 | `Border Width`     | Number  | No       | The width of the line border. If set to 0, the border is not rendered. Default is `1`.                                  |
 | `Tension`          | Number  | No       | Bezier curve tension of the line. Set to 0 for straight lines. Default is `0`. Example: `0.3`.                          |
 | `Fill`             | Boolean | No       | If `true`, for example the line chart becomes an Area chart.                                                            |
+| `Stepped`          | Boolean | No       | If `true`, for example the line chart becomes a Stepped chart.                                                          |
 
 #### DataSource
 
@@ -333,11 +334,13 @@ Some example of data that can be used :
 
     [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "fill": true }...]
 
+    [{"data": [10, 6, 2, 2, 4, 10], "stepped": true }...]
+
     [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "tension": 0.3 }...]
 
-    [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "backgroundColor": "" }...]
+    [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "backgroundColor": "green" }...]
 
-    [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "borderColor": "true" }...]
+    [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "borderColor": "red" }...]
 
     [{"data": [{"x": "January", "y": 10}, {"x": "February", "y": 6}, {"x": "March", "y": 2}, {"x": "April", "y": 2}, {"x": "May", "y": 4}, {"x": "June", "y": 10}], "borderWidth": 5 }...]
 
@@ -348,5 +351,4 @@ Some example of data that can be used :
 ## TODO
 
 - Support Dumbbell Chart
-- Support Mixed chart
 - Support Radialbar charts

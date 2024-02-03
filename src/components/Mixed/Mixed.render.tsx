@@ -54,10 +54,11 @@ const Mixed: FC<IMixedProps> = ({
         data: empty,
         fill: set.fill || false,
         borderColor: colorToHex(set.borderColor || color),
-        backgroundColor: colorToHex(set.backgroundColor || set.backgroundColor || color) + '50',
+        backgroundColor: colorToHex(set.backgroundColor || set.borderColor || color) + '50',
         borderWidth: set.borderWidth || 1,
         order: index,
         tension: set.tension || 0,
+        stepped: set.stepped || false,
       };
     }),
   });
@@ -77,11 +78,12 @@ const Mixed: FC<IMixedProps> = ({
           ...prevValue.datasets[index],
           data: v[index]?.data,
           label: v[index]?.label || _set.label,
-          // backgroundColor: v[index]?.backgroundColor && _set.backgroundColor,
-          // borderColor: v[index]?.borderColor && _set.borderColor,
+          // backgroundColor: v[index]?.backgroundColor || _set.backgroundColor,
+          // borderColor: v[index]?.borderColor || _set.borderColor,
           fill: v[index]?.fill || _set.fill,
           borderWidth: v[index]?.borderWidth || _set.borderWidth,
           tension: v[index]?.tension || _set.tension,
+          stepped: v[index]?.stepped || _set.stepped,
         })),
       }));
     };
@@ -99,6 +101,7 @@ const Mixed: FC<IMixedProps> = ({
   const options = useMemo(
     () => ({
       responsive: true,
+      maintainAspectRatio: false,
       // indexAxis: orientation,
       plugins: {
         legend: {
