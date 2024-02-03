@@ -73,6 +73,7 @@ const Line: FC<ILineProps> = ({
   const options = useMemo(
     () => ({
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           display: (legendPosition as string) !== 'hidden',

@@ -101,6 +101,7 @@ const Mixed: FC<IMixedProps> = ({
   const options = useMemo(
     () => ({
       responsive: true,
+      maintainAspectRatio: false,
       // indexAxis: orientation,
       plugins: {
         legend: {

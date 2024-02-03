@@ -81,6 +81,7 @@ const Bar: FC<IBarProps> = ({
   const options = useMemo(
     () => ({
       responsive: true,
+      maintainAspectRatio: false,
       indexAxis: orientation,
       plugins: {
         legend: {
