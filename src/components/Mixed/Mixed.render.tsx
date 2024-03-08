@@ -150,7 +150,7 @@ const Mixed: FC<IMixedProps> = ({
   );
 
   return (
-    <span ref={connect} style={style} className={cn(className, classNames)}>
+    <span ref={connect} style={style} className={cn('chart', className, classNames)}>
       <Chart type="bar" data={value} options={options} />
     </span>
   );
