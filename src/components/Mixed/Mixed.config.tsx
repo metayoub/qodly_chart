@@ -64,6 +64,7 @@ export default {
     yAxis: true,
     stacked: false,
     style: {
+      display: 'block',
       height: '200px',
       width: '400px',
     },
