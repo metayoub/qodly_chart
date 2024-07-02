@@ -52,7 +52,7 @@ export default {
       },
     ],
     datasources: {
-      accept: ['string'],
+      accept: ['array'],
     },
   },
   defaultProps: {
@@ -63,6 +63,11 @@ export default {
     xAxis: true,
     yAxis: true,
     stacked: false,
+    style: {
+      display: 'block',
+      height: '200px',
+      width: '400px',
+    },
   },
 } as T4DComponentConfig<IMixedProps>;
 

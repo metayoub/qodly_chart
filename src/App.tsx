@@ -1,4 +1,4 @@
-import { WebformEditorStandalone } from '@ws-ui/webform-editor-standalone';
+import { WebformEditorStandalone } from '@ws-ui/webform-editor';
 import components from './components';
 
 function App() {
