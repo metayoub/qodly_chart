@@ -2,7 +2,7 @@
   "app_id": "qodly_431f853d4e15946ba36f",
   "name": "qodly_chartjs",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.2.0",
   "type": "module",
   "author": {
     "name": "Qodly Team",
@@ -18,17 +18,14 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.0.3",
-    "@ws-ui/craftjs-core": "^0.2.5",
-    "@ws-ui/craftjs-layers": "^0.2.2",
-    "@ws-ui/craftjs-utils": "^0.2.1",
-    "@ws-ui/webform-editor": "^0.2.12",
+    "@ws-ui/webform-editor": "0.3.28",
     "chart.js": "^4.4.2",
     "react": "^17.0.2",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@qodly/cli": "^0.1.39",
+    "@qodly/cli": "^0.2.15",
     "@types/chart.js": "^2.9.41",
     "@types/react": "^18.2.65",
     "@types/react-dom": "^18.2.21",
