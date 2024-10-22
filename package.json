@@ -2,7 +2,7 @@
   "app_id": "qodly_431f853d4e15946ba36f",
   "name": "qodly_chartjs",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.2.3",
   "type": "module",
   "author": {
     "name": "Qodly Team",
@@ -25,7 +25,7 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@qodly/cli": "^0.2.16",
+    "@qodly/cli": "^0.2.17",
     "@types/chart.js": "^2.9.41",
     "@types/react": "^18.2.65",
     "@types/react-dom": "^18.2.21",
