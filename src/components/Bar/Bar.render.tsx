@@ -57,6 +57,9 @@ const Bar: FC<IBarProps> = ({
 
     const listener = async (/* event */) => {
       const v = await ds.getValue<Array<any>>();
+
+      if (!v) return;
+
       setValue((prevValue) => ({
         ...prevValue,
         labels: v.map((e) => e.x),

@@ -72,6 +72,8 @@ const Line: FC<ILineProps> = ({
     const listener = async (/* event */) => {
       const v = await ds.getValue<Array<any>>();
 
+      if (!v) return;
+
       setValue((prevValue) => ({
         ...prevValue,
         datasets: datasets.map((_set, index) => ({
