@@ -72,6 +72,8 @@ const Mixed: FC<IMixedProps> = ({
     const listener = async (/* event */) => {
       const v = await ds.getValue<Array<any>>();
 
+      if (!v) return;
+
       setValue((prevValue) => ({
         ...prevValue,
         datasets: dataSets.map((_set, index) => ({

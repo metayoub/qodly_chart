@@ -2,7 +2,7 @@
   "app_id": "qodly_431f853d4e15946ba36f",
   "name": "qodly_chartjs",
   "private": true,
-  "version": "0.2.3",
+  "version": "0.2.4",
   "type": "module",
   "author": {
     "name": "Qodly Team",
@@ -37,6 +37,6 @@
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-react-hooks": "^4.6.0",
     "typescript": "^5.4.2",
-    "vite": "^5.1.6"
+    "vite": "^6.3.3"
   }
 }

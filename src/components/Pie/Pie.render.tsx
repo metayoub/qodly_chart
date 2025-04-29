@@ -39,6 +39,9 @@ const Pie: FC<IPieProps> = ({
 
     const listener = async (/* event */) => {
       const v = await ds.getValue<Array<any>>();
+
+      if (!v) return;
+
       const colorgenerated = generateColorPalette(
         v.length,
         ...colors.map((e) => e.color || randomColor()),
