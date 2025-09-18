@@ -1,63 +1,53 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ProxyOptions } from 'vite';
 
-const TARGET = process.env.PROXY_SERVER || 'https://127.0.0.1:7443';
+export function initProxy(env: Record<string, string>): Record<string, string | ProxyOptions> {
+  const TARGET = env.PROXY_SERVER || 'https://127.0.0.1:7443';
+  const IS_API_SECURE = env.API_SECURE === 'true';
+  const API_KEY = env.API_KEY || '';
 
-function sanitizeSetCookie(cookie = '') {
-  return cookie.replace(/; secure/i, '');
-}
+  function sanitizeSetCookie(cookie = '') {
+    return cookie.replace(/; secure/i, '');
+  }
 
-const proxyOpts = {
-  target: TARGET,
-  secure: false,
-  ws: true,
-  onProxyReq(proxyReq: any, req: any) {
-    let body = '';
-
-    req.setEncoding('utf-8');
-    req.on('data', (data: string) => (body += data));
-    req.on('end', () => {
-      req.body = body;
-    });
-
-    proxyReq.setHeader('Host', new URL(TARGET).host);
-    proxyReq.setHeader('Origin', TARGET);
-    proxyReq.setHeader('Referer', TARGET);
-  },
-  onProxyRes(proxyRes: any) {
-    if (proxyRes.headers['Set-Cookie']) {
-      if (Array.isArray(proxyRes.headers['Set-Cookie'])) {
-        proxyRes.headers['Set-Cookie'] = proxyRes.headers['Set-Cookie'].map(sanitizeSetCookie);
-      } else {
-        proxyRes.headers['Set-Cookie'] = sanitizeSetCookie(proxyRes.headers['Set-Cookie']);
-      }
-    }
-  },
-};
-
-const proxy: Record<string, string | ProxyOptions> = [
-  '/rest',
-  '/$lib',
-  '/api',
-  '/login.html',
-  '/css',
-  '/img',
-  '/js',
-  '/LSP',
-  '/remoteDebugger',
-  '/dataexplorer',
-  '/$shared',
-].reduce(
-  (prev, cur) => ({
-    ...prev,
-    [cur]: proxyOpts,
-  }),
-  {
-    '/rest/$upload': {
-      target: TARGET,
-      secure: false,
+  const proxyOpts: ProxyOptions = {
+    target: TARGET,
+    secure: IS_API_SECURE,
+    ws: true,
+    headers: {
+      'api-key': API_KEY,
     },
-  },
-);
+    changeOrigin: true,
+    configure(proxy) {
+      proxy.on('proxyRes', (proxyRes) => {
+        if (proxyRes.headers['set-cookie']) {
+          if (Array.isArray(proxyRes.headers['set-cookie'])) {
+            proxyRes.headers['set-cookie'] = proxyRes.headers['set-cookie'].map(sanitizeSetCookie);
+          } else {
+            proxyRes.headers['set-cookie'] = [sanitizeSetCookie(proxyRes.headers['set-cookie'])];
+          }
+        }
+      });
+    },
+  };
 
-export default proxy;
+  return [
+    '/rest',
+    '/$lib',
+    '/api',
+    '/login.html',
+    '/css',
+    '/img',
+    '/js',
+    '/LSP',
+    '/remoteDebugger',
+    '/dataexplorer',
+    '/$shared',
+  ].reduce(
+    (prev, cur) => ({
+      ...prev,
+      [cur]: proxyOpts,
+    }),
+    {},
+  );
+}
