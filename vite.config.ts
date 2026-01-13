@@ -2,6 +2,8 @@ import { PluginOption, defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import importMetaUrlPlugin from '@ws-ui/vite-plugins/dist/esbuild-plugin-import-meta-url';
 import monacoEditorPlugin from '@ws-ui/vite-plugins/dist/vite-plugin-monaco-editor';
+import standaloneEditorPlugin from '@ws-ui/vite-plugins/dist/standalone-editor-plugin';
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import { federation } from '@module-federation/vite';
 import { initProxy } from './proxy.config';
 import { dependencies as deps, app_id } from './package.json';
@@ -32,7 +34,7 @@ const redirect = (opts: { from: string; to: string }): PluginOption => {
 
 const getBuildPlugins = () => {
   if (isDevEnv) {
-    return [monacoEditorPlugin()];
+    return [monacoEditorPlugin(), standaloneEditorPlugin()];
   }
 
   return [
@@ -90,6 +92,16 @@ export default defineConfig(({ mode = 'local' }) => {
       redirect({
         from: '/studio/',
         to: '/',
+      }),
+      cssInjectedByJsPlugin({
+        topExecutionPriority: false,
+        jsAssetsFilterFunction: (outputChunk) => {
+          if (outputChunk.name === 'components') {
+            return true;
+          }
+
+          return false;
+        },
       }),
       ...getBuildPlugins(),
     ],
